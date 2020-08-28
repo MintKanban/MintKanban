@@ -1,7 +1,5 @@
 version: 2
 main:
   type: static
-  path: build
-  spa: true
-
-  
+  path: /build
+  spa: false
