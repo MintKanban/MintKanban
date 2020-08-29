@@ -14,6 +14,16 @@ function App() {
     done: [new Card(":P")]
   });
 
+
+  function setCard(listName: string) {
+    return (card: Card) => {
+      setLists({
+        ...lists,
+        [listName]: [...lists[listName], card]
+      });
+    }
+  }
+
   const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
 
   const move = (
@@ -81,7 +91,7 @@ function App() {
         {
           listOrder.map(listName => {
             return (
-              <List key={listName} list={lists[listName]} listName={listName}/>
+              <List key={listName} list={lists[listName]} listName={listName} setCard={setCard(listName)} />
             );
           })
         }

@@ -1,14 +1,15 @@
 import React from "react";
-import { Droppable, DragDropContext, Draggable, DropResult, DraggableLocation } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from "../Types/Card";
-
+import AddCard from "../AddCard/AddCard";
 
 interface ListProps {
   list: Card[],
-  listName: string
+  listName: string,
+  setCard: (card: Card) => void
 }
 
-export default function List({ list, listName }: ListProps) {
+export default function List({ list, listName, setCard }: ListProps) {
 
   const getListStyle = (isDraggingOver: boolean) => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
@@ -55,6 +56,9 @@ export default function List({ list, listName }: ListProps) {
                   </Draggable>
                 ))
               }
+              
+              <AddCard setCard={setCard}/>
+
               {provided.placeholder}
             </div>
           )
