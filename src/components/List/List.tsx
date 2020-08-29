@@ -3,14 +3,17 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from "../Card/Card";
 import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
+import './list.scss'
+import ListDropdown from "../ListDropdown/ListDropdown";
 
 interface ListProps {
   list: CardData[],
   listName: string,
   setList: {
-    add: (card: CardData) => void;
-    edit: (index: number, list: CardData[]) => (card: CardData) => void;
-    delete: (index: number, list: CardData[]) => () => void;
+    addCard: (card: CardData) => void;
+    editCard: (index: number, list: CardData[]) => (card: CardData) => void;
+    deleteCard: (index: number, list: CardData[]) => () => void;
+    deleteList: () => void;
   },
   index: number
 }
@@ -49,34 +52,35 @@ export default function List({ list, listName, setList, index }: ListProps) {
             contentEditable={editable} 
             onKeyDown={ (e: any) => {if (e.keyCode === 13) setEditable(false)}}
             onClick={() => {setEditable(true)}}
-            >
-              {listName}
-              </div>
-          <Droppable droppableId={`${listName}`} type="CARD">
-            {
-              (provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}>
-                  {
-                    list.map((card, idx) => (
-                      <Card
-                        key={idx}
-                        card={card}
-                        idx={idx}
-                        list={list}
-                        listName={listName}
-                        setList={setList}
-                      />
-                    ))
-                  }
-                  
-                  <AddCard addCard={setList.add}/>
+          >
+            {listName}
+          </div>
 
-                  {provided.placeholder}
-                </div>
-              )
-            }
+          <ListDropdown deleteList={setList.deleteList}/>
+
+          <Droppable droppableId={`${listName}`} type="CARD">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}>
+                {
+                  list.map((card, idx) => (
+                    <Card
+                      key={idx}
+                      card={card}
+                      idx={idx}
+                      list={list}
+                      listName={listName}
+                      setList={setList}
+                    />
+                  ))
+                }
+                
+                <AddCard addCard={setList.addCard}/>
+
+                {provided.placeholder}
+              </div>
+            )}
           </Droppable>
         </div>
       )}

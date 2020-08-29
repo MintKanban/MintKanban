@@ -11,16 +11,17 @@ function App() {
     inProgress: [new CardData("finish hackathon")],
     done: [new CardData(":P")]
   });
-
+  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
+  
   function setList(listName: string) {
     return {
-      add: (card: CardData) => {
+      addCard: (card: CardData) => {
         setLists({
           ...lists,
           [listName]: [...lists[listName], card]
         });
       },
-      edit: (index: number, list: CardData[]) => (card: CardData) => {
+      editCard: (index: number, list: CardData[]) => (card: CardData) => {
         const listCopy = [...list];
         listCopy.splice(index, 1, card);
         setLists({
@@ -28,18 +29,26 @@ function App() {
           [listName]: listCopy
         });
       },
-      delete: (index: number, list: CardData[]) => () => {
+      deleteCard: (index: number, list: CardData[]) => () => {
         const listCopy = [...list];
         listCopy.splice(index, 1);
         setLists({
           ...lists,
           [listName]: listCopy
         });
+      },
+      deleteList: () => {
+        const listCopy = {...lists};
+        delete listCopy[listName];
+        setLists(listCopy);
+
+        const listOrderCopy = [...listOrder];
+        listOrderCopy.splice(listOrder.indexOf(listName), 1)
+        setListOrder(listOrderCopy);
       }
     }
   }
 
-  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
 
   const move = (
     source: CardData[], destination: CardData[],
@@ -109,6 +118,7 @@ function App() {
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
+      flexWrap: "wrap",
       alignItems: "flex-start"
     }}>
       <DragDropContext
