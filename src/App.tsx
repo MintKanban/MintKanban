@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './styles/index.scss';
-import { DragDropContext, DropResult, DraggableLocation } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react-beautiful-dnd';
 import List from './components/List/List';
 import AddList from './components/AddList/AddList';
 import CardData from './components/Types/CardData';
-
-
 
 function App() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
@@ -62,26 +60,36 @@ function App() {
   };
 
   const reorder = (
-    droppableId: string, startIndex: number, endIndex: number
+    type: string, droppableId: string, startIndex: number, endIndex: number
   ) => {
-    const result = Array.from(lists[droppableId]);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
+    if (type === 'LIST') {
+      const result = Array.from(listOrder);
+      const [removed] = result.splice(startIndex, 1);
+      result.splice(endIndex, 0, removed);
 
-    setLists({
-      ...lists,
-      [droppableId]: result
-    })
+      setListOrder(result)
+    } else if (type === 'CARD') {
+      const result = Array.from(lists[droppableId]);
+      const [removed] = result.splice(startIndex, 1);
+      result.splice(endIndex, 0, removed);
+
+      setLists({
+        ...lists,
+        [droppableId]: result
+      })
+    }
   };
   
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return;
     }
-    const { source, destination } = result;
+
+    const { type, source, destination } = result;
 
     if (source.droppableId === destination.droppableId) {
       reorder(
+        type,
         source.droppableId,
         source.index,
         destination.index
@@ -99,32 +107,48 @@ function App() {
   return (
     <div className="App" style={{
       display: "flex",
-      justifyContent: "space-between",
+      flexDirection: "row",
+      justifyContent: "center",
       alignItems: "flex-start"
     }}>
       <DragDropContext
         onDragEnd={onDragEnd}
       > 
-        {
-          listOrder.map(listName => {
-            return (
-              <List key={listName}
-                list={lists[listName]}
-                listName={listName}
-                setList={setList(listName)}
-              />
-            );
-          })
-        }
+        <Droppable
+          droppableId="main-droppable"
+          direction="horizontal"
+          type="LIST"
+        >
+          {(provided, snapshot) => (
+            <main ref={provided.innerRef} style={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignItems: "flex-start"
+            }}>
+              {
+                listOrder.map(listName => {
+                  return (
+                    <List key={listName}
+                      list={lists[listName]}
+                      listName={listName}
+                      setList={setList(listName)}
+                      index={listOrder.indexOf(listName)}
+                    />
+                  );
+                })
+              }
 
-        { 
-          <AddList
-            lists={lists}
-            setLists={setLists}
-            listOrder={listOrder}
-            setListOrder={setListOrder}
-          />
-        }
+              {provided.placeholder}
+            </main>
+          )}
+        </Droppable>
+
+        <AddList
+          lists={lists}
+          setLists={setLists}
+          listOrder={listOrder}
+          setListOrder={setListOrder}
+        />
       </DragDropContext>
     </div>
   );
