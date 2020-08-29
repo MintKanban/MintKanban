@@ -70,10 +70,8 @@ export default function List({ list, listName, setList, index }: ListProps) {
                       />
                     ))
                   }
-                  
-                  <AddCard addCard={setList.add}/>
-
                   {provided.placeholder}
+                  <AddCard addCard={setList.add}/>
                 </div>
               )
             }
