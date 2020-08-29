@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import CardData from '../Types/CardData';
 import EditCard from '../EditCard/EditCard';
+import BCard from 'react-bootstrap/Card';
 
 interface CardProps {
   card: CardData,
@@ -36,30 +37,20 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
         index={idx}
       >
         {(provided, snapshot) => (
-          <div
+          <BCard
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={
-              {userSelect: 'none',
-              padding: 16,
-              margin: `0 0 16px 0`,
-
-              // change background colour if dragging
-              background: snapshot.isDragging ? 'lightgreen' : 'grey',
-
-              // styles we need to apply on draggables
-              ...provided.draggableProps.style}
-            }
             onClick={handleShow}
+            className="mb-3"
+            bg={snapshot.isDragging ? "light" : ""}
           >
-            <h4>{card.title}</h4>
-            {/* <div className="delete-card"
-              onClick={ () => { setList.delete(idx, list) }}
-            >
-              delete icon
-            </div> */}
-          </div>
+            <BCard.Body>
+              <BCard.Text>
+                {card.title}
+              </BCard.Text>
+            </BCard.Body>
+          </BCard>
         )}
       </Draggable>
     </>
