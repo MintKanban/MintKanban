@@ -1,40 +1,20 @@
 import React, { useState } from 'react';
-import logo from './mintbean.png';
 import './styles/index.scss';
-import { Droppable, DragDropContext, Draggable, DropResult, DraggableLocation } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult, DraggableLocation } from 'react-beautiful-dnd';
+import List from './components/List/List';
+import Card from './components/Types/Card';
+import AddList from './components/AddList/AddList';
 
-class Card {
-  name: string = "(TODO)"
-  constructor(name: string) {
-    this.name = name;
-  }
-}
 
-// class Title {
-//   title: string = "()"
-//   constructor(title: string) {
-//     this.title = title;
-//   } 
-// }
 
 function App() {
-  // const [items, setItems] = useState([
-  //   {name: 'First', column: 'Todo'},
-  //   {name: 'Second', column: 'Todo'}
-  // ]);
-
   const [lists, setLists] = useState<Record<string, Card[]>>({
     todo: [new Card("first"), new Card("second")],
+    inProgress: [new Card("finish hackathon")],
     done: [new Card(":P")]
   });
 
-  // React.MouseEvent<HTMLDivElement, MouseEvent>
-  const addList = (listName: string) => {
-    setLists({ ...lists, [listName]: [] });
-  }
-  // const [title, setTitle] = useState<Record<string, Card[]>>({
-  //   title: new Title(title)
-  // });
+  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
 
   const move = (
     source: Card[], destination: Card[],
@@ -66,12 +46,6 @@ function App() {
       [droppableId]: result
     })
   };
-  // might change this
-  const getListStyle = (isDraggingOver: boolean) => ({
-      background: isDraggingOver ? 'lightblue' : 'lightgrey',
-      padding: 8,
-      width: 250
-  });
   
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) {
@@ -104,91 +78,45 @@ function App() {
       <DragDropContext
         onDragEnd={onDragEnd}
       > 
-        <h2>Todo</h2>
-        <Droppable droppableId="todo" type="CARD">
-          {
-            (provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
-                {
-                  lists['todo'].map((item, idx) => (
-                    <Draggable draggableId={`todo-${idx}`} index={idx}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={
-                            {userSelect: 'none',
-                            padding: 16,
-                            margin: `0 0 16px 0`,
+        {
+          listOrder.map(listName => {
+            return (
+              <List key={listName} list={lists[listName]} listName={listName}/>
+            );
+          })
+        }
 
-                            // change background colour if dragging
-                            background: snapshot.isDragging ? 'lightgreen' : 'grey',
-
-                            // styles we need to apply on draggables
-                            ...provided.draggableProps.style}
-                          }
-                        >
-                          <h4>{item.name}</h4>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))
-                }
-                {provided.placeholder}
-              </div>
-            )
-          }
-        </Droppable>
-        
-        <h2>Done</h2>
-        <Droppable droppableId="done" type="CARD">
-          {
-            (provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
-                {
-                  lists['done'].map((item, idx) => (
-                    <Draggable draggableId={`done-${idx}`} index={idx}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={
-                            {userSelect: 'none',
-                            padding: 16,
-                            margin: `0 0 16px 0`,
-
-                            // change background colour if dragging
-                            background: snapshot.isDragging ? 'lightgreen' : 'grey',
-
-                            // styles we need to apply on draggables
-                            ...provided.draggableProps.style}
-                          }
-                        >
-                          <h4>{item.name}</h4>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))
-                }
-                {provided.placeholder}
-              </div>
-            )
-          }
-        </Droppable>
-
-        {/* <div onClick={listInput}>
+        { 
+          <AddList
+            lists={lists}
+            setLists={setLists}
+            listOrder={listOrder}
+            setListOrder={setListOrder}
+          />
+        }
+        {/* <div onClick={() => setAddButton(true)}>
           <div
             style={{
-              display: "inline-block"
+              display: addButton ? "none" : "inline-block"
             }}
           >
             + Add a new list
+          </div>
+
+          <div
+            style={{
+              display: addButton ? "inline-block" : "none"
+            }}
+          >
+            <input type="text"
+              value={newList}
+              onChange={updateListName}
+            />
+            <button
+              onClick={addList}
+            >
+              Add List
+            </button>
           </div>
         </div> */}
       </DragDropContext>
