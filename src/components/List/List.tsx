@@ -1,22 +1,28 @@
-import React from "react";
-import { Droppable, Draggable } from 'react-beautiful-dnd';
-import Card from "../Types/Card";
+import React, { useState } from "react";
+import { Droppable } from 'react-beautiful-dnd';
+import Card from "../Card/Card";
+import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
+import EditCard from "../EditCard/EditCard";
 
 interface ListProps {
-  list: Card[],
-  listName: string,
-  setCard: (card: Card) => void
+  list: CardData[]
+  listName: string
+  setList: {
+    add: (card: CardData) => void;
+    edit: (index: number, list: CardData[]) => (card: CardData) => void;
+    delete: (index: number, list: CardData[]) => () => void;
+  }
 }
 
-export default function List({ list, listName, setCard }: ListProps) {
+export default function List({ list, listName, setList }: ListProps) {
 
   const getListStyle = (isDraggingOver: boolean) => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
     padding: 8,
     width: 250
   });
-
+  
   return (
     <>
       <h2>{listName}</h2>
@@ -27,37 +33,18 @@ export default function List({ list, listName, setCard }: ListProps) {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}>
               {
-                list.map((item, idx) => (
-                  <Draggable
-                    key={`${listName}-${idx}`}
-                    draggableId={`${listName}-${idx}`}
-                    index={idx}
-                  >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={
-                          {userSelect: 'none',
-                          padding: 16,
-                          margin: `0 0 16px 0`,
-
-                          // change background colour if dragging
-                          background: snapshot.isDragging ? 'lightgreen' : 'grey',
-
-                          // styles we need to apply on draggables
-                          ...provided.draggableProps.style}
-                        }
-                      >
-                        <h4>{item.name}</h4>
-                      </div>
-                    )}
-                  </Draggable>
+                list.map((card, idx) => (
+                  <Card
+                    card={card}
+                    idx={idx}
+                    list={list}
+                    listName={listName}
+                    setList={setList}
+                  />
                 ))
               }
               
-              <AddCard setCard={setCard}/>
+              <AddCard addCard={setList.add}/>
 
               {provided.placeholder}
             </div>
@@ -67,4 +54,3 @@ export default function List({ list, listName, setCard }: ListProps) {
     </>
   );
 }
-

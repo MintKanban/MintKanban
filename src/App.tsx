@@ -2,32 +2,49 @@ import React, { useState } from 'react';
 import './styles/index.scss';
 import { DragDropContext, DropResult, DraggableLocation } from 'react-beautiful-dnd';
 import List from './components/List/List';
-import Card from './components/Types/Card';
 import AddList from './components/AddList/AddList';
+import CardData from './components/Types/CardData';
 
 
 
 function App() {
-  const [lists, setLists] = useState<Record<string, Card[]>>({
-    todo: [new Card("first"), new Card("second")],
-    inProgress: [new Card("finish hackathon")],
-    done: [new Card(":P")]
+  const [lists, setLists] = useState<Record<string, CardData[]>>({
+    todo: [new CardData("first"), new CardData("second")],
+    inProgress: [new CardData("finish hackathon")],
+    done: [new CardData(":P")]
   });
 
-
-  function setCard(listName: string) {
-    return (card: Card) => {
-      setLists({
-        ...lists,
-        [listName]: [...lists[listName], card]
-      });
+  function setList(listName: string) {
+    return {
+      add: (card: CardData) => {
+        setLists({
+          ...lists,
+          [listName]: [...lists[listName], card]
+        });
+      },
+      edit: (index: number, list: CardData[]) => (card: CardData) => {
+        const listCopy = [...list];
+        listCopy.splice(index, 1, card);
+        setLists({
+          ...lists,
+          [listName]: listCopy
+        });
+      },
+      delete: (index: number, list: CardData[]) => () => {
+        const listCopy = [...list];
+        listCopy.splice(index, 1);
+        setLists({
+          ...lists,
+          [listName]: listCopy
+        });
+      }
     }
   }
 
   const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
 
   const move = (
-    source: Card[], destination: Card[],
+    source: CardData[], destination: CardData[],
     droppableSource: DraggableLocation,
     droppableDestination: DraggableLocation
   ) => {
@@ -91,7 +108,11 @@ function App() {
         {
           listOrder.map(listName => {
             return (
-              <List key={listName} list={lists[listName]} listName={listName} setCard={setCard(listName)} />
+              <List key={listName}
+                list={lists[listName]}
+                listName={listName}
+                setList={setList(listName)}
+              />
             );
           })
         }
