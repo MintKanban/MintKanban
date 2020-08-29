@@ -105,26 +105,17 @@ function App() {
   }
   
   return (
-    <div className="App" style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "flex-start"
-    }}>
+    <div>
       <DragDropContext
         onDragEnd={onDragEnd}
-      > 
+      >
         <Droppable
           droppableId="main-droppable"
           direction="horizontal"
           type="LIST"
         >
           {(provided, snapshot) => (
-            <main ref={provided.innerRef} style={{
-              display: "flex",
-              justifyContent: "space-evenly",
-              alignItems: "flex-start"
-            }}>
+            <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto">
               {
                 listOrder.map(listName => {
                   return (
