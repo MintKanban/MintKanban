@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import CardData from '../Types/CardData';
-import { Col, InputGroup } from 'react-bootstrap';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 interface AddCardProps {
     addCard: (card: CardData) => void
