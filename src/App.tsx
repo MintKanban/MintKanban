@@ -5,8 +5,6 @@ import List from './components/List/List';
 import AddList from './components/AddList/AddList';
 import CardData from './components/Types/CardData';
 
-
-
 function App() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
     todo: [new CardData("first"), new CardData("second")],

@@ -17,20 +17,20 @@ interface CardProps {
 
 export default function Card({card, idx, list, listName, setList}: CardProps) {
 
-  const [editModal, setEditModal] = useState(false);
-  let displayModal;
-  if (editModal) {
-    displayModal =
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
       <EditCard
         card={card}
         editCard={ setList.edit(idx, list) }
         deleteCard={ setList.delete(idx, list) }
-        closeModal={ () => setEditModal(false) }
+        handleClose={ handleClose }
+        show={ show }
       />
-  }
-  
-  return (
-    <>
       <Draggable
         draggableId={`${listName}-${idx}`}
         index={idx}
@@ -51,7 +51,7 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
               // styles we need to apply on draggables
               ...provided.draggableProps.style}
             }
-            onClick={() => setEditModal(true)}
+            onClick={handleShow}
           >
             <h4>{card.title}</h4>
             {/* <div className="delete-card"
@@ -62,8 +62,6 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
           </div>
         )}
       </Draggable>
-
-      {displayModal}
     </>
   );
 }
