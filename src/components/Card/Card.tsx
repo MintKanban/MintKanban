@@ -32,7 +32,6 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
         show={ show }
       />
       <Draggable
-        key={`${listName}-${idx}`}
         draggableId={`${listName}-${idx}`}
         index={idx}
       >
