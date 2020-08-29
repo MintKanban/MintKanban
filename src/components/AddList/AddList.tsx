@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Card from '../Types/Card';
+import CardData from '../Types/CardData';
 
 interface AddListProps {
-    lists: Record<string, Card[]>
-    setLists: React.Dispatch<React.SetStateAction<Record<string, Card[]>>>
+    lists: Record<string, CardData[]>
+    setLists: React.Dispatch<React.SetStateAction<Record<string, CardData[]>>>
     listOrder: string[]
     setListOrder: React.Dispatch<React.SetStateAction<string[]>>
 }
