@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Droppable } from 'react-beautiful-dnd';
 import Card from "../Card/Card";
 import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
-import EditCard from "../EditCard/EditCard";
 
 interface ListProps {
   list: CardData[]
@@ -16,16 +15,26 @@ interface ListProps {
 }
 
 export default function List({ list, listName, setList }: ListProps) {
+  const [editable, setEditable] = useState(true)
 
   const getListStyle = (isDraggingOver: boolean) => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
     padding: 8,
     width: 250
   });
+
+
   
   return (
     <>
-      <h2>{listName}</h2>
+      <div 
+        className = 'listname'
+        contentEditable={editable} 
+        onClick={() => { setEditable(true) }} 
+        onKeyDown={(e: any) => { if (e.keyCode === 13) setEditable(false)}}>
+          {listName}
+      </div>
+      
       <Droppable droppableId={`${listName}`} type="CARD">
         {
           (provided, snapshot) => (
