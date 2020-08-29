@@ -94,31 +94,6 @@ function App() {
             setListOrder={setListOrder}
           />
         }
-        {/* <div onClick={() => setAddButton(true)}>
-          <div
-            style={{
-              display: addButton ? "none" : "inline-block"
-            }}
-          >
-            + Add a new list
-          </div>
-
-          <div
-            style={{
-              display: addButton ? "inline-block" : "none"
-            }}
-          >
-            <input type="text"
-              value={newList}
-              onChange={updateListName}
-            />
-            <button
-              onClick={addList}
-            >
-              Add List
-            </button>
-          </div>
-        </div> */}
       </DragDropContext>
     </div>
   );

@@ -9,18 +9,18 @@ interface AddListProps {
 }
 
 export default function AddList({ lists, setLists, listOrder, setListOrder }: AddListProps) {
-  // React.MouseEvent<HTMLDivElement, MouseEvent>
   const [addButton, setAddButton] = useState(false);
-  const [newList, setNewList] = useState('');
+  const [listName, setListName] = useState('');
   const updateListName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewList(e.target.value);
+    setListName(e.target.value);
   };
-  const addList = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLists({ ...lists, [newList]: [] });
-    setListOrder(listOrder.concat([newList]));
+    e.stopPropagation();
+    setLists({ ...lists, [listName]: [] });
+    setListOrder(listOrder.concat([listName]));
     setAddButton(false);
-    setNewList('');
+    setListName('');
   };
 
   return (
@@ -34,21 +34,19 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
           + Add a new list
         </div>
 
-        <div
+        <form
           style={{
             display: addButton ? "inline-block" : "none"
           }}
+          onSubmit = {addList}
         >
           <input type="text"
-            value={newList}
+            value={listName}
             onChange={updateListName}
+            required
           />
-          <button
-            onClick={addList}
-          >
-            Add List
-          </button>
-        </div>
+          <button>Add List</button>
+        </form>
       </div>
     </>
   );
