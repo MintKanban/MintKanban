@@ -17,14 +17,14 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
     setListName(e.target.value);
   };
   const [duplicate, setDuplicate] = useState(false);
-  const regex = new RegExp( listOrder.join( "|" ), "i");
+  const listOrderCopy = listOrder.concat().map( title => title.toLowerCase());
   useEffect(() => {
-    setDuplicate(regex.test(listName));
+    setDuplicate(listOrderCopy.includes(listName.toLowerCase()));
   }, [listName]);
-  
   const addList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    if (duplicate) return null;
     setLists({ ...lists, [listName]: [] });
     setListOrder(listOrder.concat([listName]));
     setAddButton(false);

@@ -3,18 +3,33 @@ import { Form } from 'react-bootstrap';
 
 interface EditListTitleProps {
   listName: string,
-  renameList: (newListName: string) => void;
+  listOrder: string[],
+  renameList: (newListName: string) => void,
+  duplicate: boolean,
+  setDuplicate: (arg0: boolean) => void
 }
 
 export default function EditListTitle(
-  { listName, renameList }: EditListTitleProps) {
+  { listName, listOrder, renameList, duplicate, setDuplicate }: EditListTitleProps
+) {
 
-  const [newListname, setNewListname] = useState(listName)
+  const [newListName, setNewListName] = useState(listName)
   const [editing, setEditing] = useState(false);
+  
+  const listOrderCopy = listOrder.concat().map( title => title.toLowerCase());
+  useEffect(() => {
+    if (listName.toLowerCase() === newListName.toLowerCase()) {
+      setDuplicate(false);
+    } else {
+      setDuplicate(listOrderCopy.includes(newListName.toLowerCase()));
+    }
+  }, [newListName]);
 
-  const saveTitle = () => {
+  const saveTitle = (e: any) => {
+    e.preventDefault();
+    if (!newListName || duplicate) return null;
     setEditing(false);
-    renameList(newListname);
+    renameList(newListName);
   };
 
   useEffect(() => {
@@ -32,7 +47,7 @@ export default function EditListTitle(
           id={`${listName}-input`}
           required
           defaultValue={listName}
-          onChange={ e => setNewListname(e.target.value)}
+          onChange={ e => setNewListName(e.target.value) }
           onBlur={saveTitle}
         />
       </Form>

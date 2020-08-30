@@ -153,6 +153,7 @@ function App() {
                         list={lists[listName]}
                         listName={listName}
                         setList={setList(listName)}
+                        listOrder={listOrder}
                         index={listOrder.indexOf(listName)}
                       />
                     );
