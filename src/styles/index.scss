@@ -1,9 +1,14 @@
 @import "~bootswatch/dist/flatly/variables";
 @import "~bootstrap";
 @import "~bootswatch/dist/flatly/bootswatch";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 .list-card {
     min-width: 16em;
     width: 16em;
     min-height: 16em;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
 }
