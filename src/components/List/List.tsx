@@ -1,22 +1,24 @@
-import React, {useState} from "react";
+import React from "react";
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from "../Card/Card";
 import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
+import EditListTitle from "../EditListTitle/EditListTitle";
 
 interface ListProps {
   list: CardData[],
   listName: string,
   setList: {
-    add: (card: CardData) => void;
-    edit: (index: number, list: CardData[]) => (card: CardData) => void;
-    delete: (index: number, list: CardData[]) => () => void;
+    addCard: (card: CardData) => void;
+    editCard: (index: number, list: CardData[]) => (card: CardData) => void;
+    deleteCard: (index: number, list: CardData[]) => () => void;
+    deleteList: () => void;
+    renameList: (newListName: string) => void;
   },
   index: number
 }
 
-export default function List({ list, listName, setList, index }: ListProps) {
-  const [editable, setEditable] = useState(true)
+export default function List({ list, listName, setList, index}: ListProps) {
   
   const getListStyle = (isDraggingOver: boolean) => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
@@ -45,13 +47,8 @@ export default function List({ list, listName, setList, index }: ListProps) {
             ...provided.draggableProps.style
           }}
         >
-          <div 
-            contentEditable={editable} 
-            onKeyDown={ (e: any) => {if (e.keyCode === 13) setEditable(false)}}
-            onClick={() => {setEditable(true)}}
-            >
-              {listName}
-              </div>
+          <EditListTitle listName={listName} renameList={setList.renameList}/>
+          
           <Droppable droppableId={`${listName}`} type="CARD">
             {
               (provided, snapshot) => (
@@ -71,7 +68,7 @@ export default function List({ list, listName, setList, index }: ListProps) {
                     ))
                   }
                   {provided.placeholder}
-                  <AddCard addCard={setList.add}/>
+                  <AddCard addCard={setList.addCard}/>
                 </div>
               )
             }
