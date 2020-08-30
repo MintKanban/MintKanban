@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Card, CardGroup, Nav, Button, NavLink, Navbar } from 'react-bootstrap'
+import { Card, CardGroup, Col, Container, Row } from 'react-bootstrap'
 import { LandingPageNav } from "./NavBar/NavBar";
 
 

@@ -1,14 +1,13 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/index.scss';
-import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, DraggableLocation, Droppable, DropResult } from 'react-beautiful-dnd';
 import List from '../List/List';
 import AddList from '../AddList/AddList';
 import CardData from '../Types/CardData';
-import { Dropdown, DropdownButton, Nav, Navbar, NavDropdown, NavLink } from "react-bootstrap";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import { BoardNav } from "../NavBar/NavBar";
 import Load from "../File/Load";
 import Save from "../File/Save";
-
 
 
 function Board() {
