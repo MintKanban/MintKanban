@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, CardGroup} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
 export default function LandingPage(){
@@ -8,7 +9,7 @@ export default function LandingPage(){
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <Container>
-          <a className="navbar-brand" href="#">tmrw</a>
+          <Link className="navbar-brand" to='/'>tmrw</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -16,10 +17,10 @@ export default function LandingPage(){
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#"><span className="sr-only">(current)</span></a>
+                <span className="sr-only">(current)</span>
               </li>
             </ul>
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button>
+            <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button></Link>
           </div>
           </Container>
         </nav>
@@ -31,7 +32,7 @@ export default function LandingPage(){
                   <div className="card-body">
                     <h3 className="card-title">Plan for your tmrw.</h3>
                     <p className="card-text">From creating goals, no matter how big or small, tmrw is here to help you out today</p>
-                    <button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button>
+                  <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button></Link>
                   </div>
                 </div>
           </Col>
@@ -84,7 +85,7 @@ export default function LandingPage(){
                 in planning creates a happier and brighter tmrw for yourself! </p>
                 
                 <p>Start creating your board today!</p>
-                <button className="btn btn-secondary my-2 my-sm-0" type="submit">Start your board</button>
+                <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Start your board</button></Link>
               </div>
             </div>
           </Col>
