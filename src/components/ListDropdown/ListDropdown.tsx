@@ -12,7 +12,7 @@ export default function ListDropdown({ deleteList }: ListDropdownProps) {
       <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded={show}
       onClick={() => setShow(!show)}
       onBlur={(e: any) => {
-        if (e.relatedTarget.className !== 'dropdown-item') {
+        if (!e.relatedTarget || e.relatedTarget.className !== 'dropdown-item') {
           setShow(false);
         }
       }}

@@ -133,7 +133,7 @@ function App() {
           direction="horizontal"
           type="LIST"
         >
-          {(provided, snapshot) => (
+          {(provided) => (
             <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto">
               {
                 listOrder.map(listName => {
