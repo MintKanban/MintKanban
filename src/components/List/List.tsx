@@ -6,6 +6,7 @@ import AddCard from "../AddCard/AddCard";
 import ListDropdown from "../ListDropdown/ListDropdown";
 import EditListTitle from "../EditListTitle/EditListTitle";
 import './list.scss'
+import BCard from 'react-bootstrap/Card';
 
 interface ListProps {
   list: CardData[],
@@ -21,13 +22,7 @@ interface ListProps {
 }
 
 export default function List({ list, listName, setList, index}: ListProps) {
-  
-  const getListStyle = (isDraggingOver: boolean) => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
-    padding: 8,
-    width: 250
-  });
-  
+
   return (
     <Draggable
       key={`${listName}`}
@@ -35,28 +30,21 @@ export default function List({ list, listName, setList, index}: ListProps) {
       index={index}
     >
       {(provided, snapshot) => (
-        <div
+        <BCard
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          style={{
-            marginRight: "10px",
-
-            // change background colour if dragging
-            background: snapshot.isDragging ? 'lightgreen' : 'grey',
-            
-            // styles we need to apply on draggables
-            ...provided.draggableProps.style
-          }}
+          className="list-card mr-3 mb-3"
         >
-          <EditListTitle listName={listName} renameList={setList.renameList}/>
-          <ListDropdown listName={listName} deleteList={setList.deleteList}/>
-
+          <BCard.Header>
+            <div className="d-flex flex-row justify-content-between align-items-baseline">
+              <EditListTitle listName={listName} renameList={setList.renameList}/>
+              <ListDropdown listName={listName} deleteList={setList.deleteList}/>
+            </div>
+          </BCard.Header>
           <Droppable droppableId={`${listName}`} type="CARD">
             {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}>
+              <BCard.Body ref={provided.innerRef}>
                 {
                   list.map((card, idx) => (
                     <Card
@@ -69,14 +57,12 @@ export default function List({ list, listName, setList, index}: ListProps) {
                     />
                   ))
                 }
-                
-                <AddCard addCard={setList.addCard}/>
-
                 {provided.placeholder}
-              </div>
+                <AddCard addCard={setList.addCard}/>
+              </BCard.Body>
             )}
           </Droppable>
-        </div>
+        </BCard>
       )}
     </Draggable>
   );

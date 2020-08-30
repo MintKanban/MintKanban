@@ -25,7 +25,7 @@ export default function AddCard({ addCard }: AddCardProps) {
     <>
       <div>
         <Form onSubmit={submitCard}>
-          <InputGroup className="mb-2">
+          <InputGroup>
             <Form.Control type="text"
                           placeholder={added ? 'Add another card' : 'Add a card'}
                           value={title}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 
 interface EditListTitleProps {
   listName: string,
@@ -25,8 +26,8 @@ export default function EditListTitle(
 
   if (editing) {
     return (
-      <form onSubmit={saveTitle}>
-        <input 
+      <Form onSubmit={saveTitle}>
+        <Form.Control
           type="text"
           id={`${listName}-input`}
           required
@@ -34,13 +35,13 @@ export default function EditListTitle(
           onChange={ e => setNewListname(e.target.value)}
           onBlur={saveTitle}
         />
-      </form>
+      </Form>
     );
   } else {
     return (
-      <h2 onDoubleClick={() => setEditing(true)}>
+      <h5 onDoubleClick={() => setEditing(true)}>
         {listName}
-      </h2>
+      </h5>
     );
   }
 }

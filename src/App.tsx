@@ -134,7 +134,7 @@ function App() {
           type="LIST"
         >
           {(provided) => (
-            <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto">
+            <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3">
               {
                 listOrder.map(listName => {
                   return (
@@ -147,18 +147,16 @@ function App() {
                   );
                 })
               }
-
               {provided.placeholder}
+              <AddList
+                lists={lists}
+                setLists={setLists}
+                listOrder={listOrder}
+                setListOrder={setListOrder}
+              />
             </main>
           )}
         </Droppable>
-
-        <AddList
-          lists={lists}
-          setLists={setLists}
-          listOrder={listOrder}
-          setListOrder={setListOrder}
-        />
       </DragDropContext>
     </div>
   );
