@@ -9,6 +9,7 @@ import './list.scss'
 import BCard from 'react-bootstrap/Card';
 
 interface ListProps {
+  index: number,
   list: CardData[],
   listName: string,
   setList: {
@@ -19,74 +20,87 @@ interface ListProps {
     renameList: (newListName: string) => void;
   },
   listOrder: string[],
-  index: number
+  editModalTour: boolean
 }
 
 export default function List(
-  { list, listName, setList, listOrder, index}: ListProps) {
+  { index, list, listName, setList, listOrder, editModalTour }:
+  ListProps
+) {
 
   const [duplicate, setDuplicate] = useState(false);
-
+  
   return (
-    <Draggable
-      key={`${listName}`}
-      draggableId={`${listName}`}
-      index={index}
-    >
-      {(provided) => (
-        <BCard
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          className="list-card mr-3 mb-3"
-        >
-          <BCard.Header>
-            <div className="d-flex flex-row justify-content-between align-items-baseline">
-              <EditListTitle
-                listName={listName}
-                listOrder={listOrder}
-                duplicate={duplicate}
-                setDuplicate={setDuplicate}
-                renameList={setList.renameList}
-              />
-              <ListDropdown
-                listName={listName}
-                deleteList={setList.deleteList}
+    <div id={index === 0 ? 'first-step' : ''}>
+      <Draggable
+        key={`${listName}`}
+        draggableId={`${listName}`}
+        index={index}
+      >
+        {(provided) => (
+          <BCard
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className="list-card mr-3 mb-3"
+          >
+            <BCard.Header>
+              <div id={index === 0 ? 'second-step' : ''}
+                className="d-flex flex-row justify-content-between align-items-baseline"
+              >
+                <EditListTitle
+                  listName={listName}
+                  listOrder={listOrder}
+                  duplicate={duplicate}
+                  setDuplicate={setDuplicate}
+                  renameList={setList.renameList}
                 />
+                <ListDropdown
+                  id={index === 0 ? 'third-step' : ''}
+                  listName={listName}
+                  deleteList={setList.deleteList}
+                  />
+              </div>
+              <BCard
+                border={duplicate ? 'danger' : '0'}
+                className={duplicate ? 'mt-2' : 'm-0'}
+              >
+                <BCard.Text>
+                  <span className="d-flex flex-row justify-content-center align-items-baseline">
+                    { duplicate ? 'That list already exists' : ''}
+                  </span>
+                </BCard.Text>
+              </BCard>
+            </BCard.Header>
+            <div id={index === 0 ? 'fourth-step' : ''}>
+              <Droppable droppableId={`${listName}`} type="CARD">
+                {(provided) => (
+                  <BCard.Body ref={provided.innerRef}>
+                    {
+                      list.map((card, idx) => (
+                        <Card
+                          key={idx}
+                          card={card}
+                          idx={idx}
+                          list={list}
+                          listName={listName}
+                          setList={setList}
+                          tour={
+                            listOrder.indexOf(listName) === 0 ? true : false
+                          }
+                          editModalTour={editModalTour}
+                        />
+                      ))
+                    }
+                    {provided.placeholder}
+                    <AddCard addCard={setList.addCard}/>
+                  </BCard.Body>
+                )}
+              </Droppable>
             </div>
-            <BCard
-              border={duplicate ? 'danger' : '0'}
-              className={duplicate ? 'mt-2' : 'm-0'}
-            >
-              <BCard.Text>
-                <span className="d-flex flex-row justify-content-center align-items-baseline">
-                  { duplicate ? 'That list already exists' : ''}
-                </span>
-              </BCard.Text>
-            </BCard>
-          </BCard.Header>
-          <Droppable droppableId={`${listName}`} type="CARD">
-            {(provided, snapshot) => (
-              <BCard.Body ref={provided.innerRef}>
-                {
-                  list.map((card, idx) => (
-                    <Card
-                      key={idx}
-                      card={card}
-                      idx={idx}
-                      list={list}
-                      listName={listName}
-                      setList={setList}
-                    />
-                  ))
-                }
-                {provided.placeholder}
-                <AddCard addCard={setList.addCard}/>
-              </BCard.Body>
-            )}
-          </Droppable>
-        </BCard>
-      )}
-    </Draggable>
+          </BCard>
+        )}
+      </Draggable>
+    </div>
   );
 }

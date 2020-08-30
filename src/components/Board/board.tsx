@@ -4,8 +4,7 @@ import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react
 import List from '../List/List';
 import AddList from '../AddList/AddList';
 import CardData from '../Types/CardData';
-
-
+import TourComponent from '../Tour/TourComponent';
 
 function Board() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
@@ -14,6 +13,7 @@ function Board() {
     done: [new CardData(":P")]
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
+  const [editModalTour, setEditModalTour] = useState(false);
 
   function loadList(serializedList: string) {
     const { lists, listOrder } = JSON.parse(serializedList);
@@ -78,7 +78,6 @@ function Board() {
     }
   }
 
-
   const move = (
     source: CardData[], destination: CardData[],
     droppableSource: DraggableLocation,
@@ -142,7 +141,6 @@ function Board() {
     }
   }
 
-
   return (
     <>
       <div>
@@ -155,16 +153,19 @@ function Board() {
             type="LIST"
           >
             {(provided) => (
-              <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3">
+              <main ref={provided.innerRef}
+                className="d-flex align-items-start flex-row overflow-auto p-3"
+              >
                 {
-                  listOrder.map(listName => {
+                  listOrder.map((listName, idx) => {
                     return (
                       <List key={listName}
+                        index={idx}
                         list={lists[listName]}
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
-                        index={listOrder.indexOf(listName)}
+                        editModalTour={editModalTour}
                       />
                     );
                   })
@@ -180,6 +181,11 @@ function Board() {
             )}
           </Droppable>
         </DragDropContext>
+
+        <TourComponent
+          editModalTour={editModalTour}
+          setEditModalTour={setEditModalTour}
+        />
       </div>
     </>
   );
