@@ -20,7 +20,7 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
   const listOrderCopy = listOrder.concat().map( title => title.toLowerCase());
   useEffect(() => {
     setDuplicate(listOrderCopy.includes(listName.toLowerCase()));
-  }, [listName]);
+  }, [listName, listOrderCopy]);
   const addList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();

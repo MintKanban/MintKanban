@@ -23,7 +23,7 @@ export default function EditListTitle(
     } else {
       setDuplicate(listOrderCopy.includes(newListName.toLowerCase()));
     }
-  }, [newListName]);
+  }, [listName, newListName, listOrderCopy, setDuplicate]);
 
   const saveTitle = (e: any) => {
     e.preventDefault();
