@@ -48,6 +48,9 @@ export default function EditListTitle(
           required
           defaultValue={listName}
           onChange={ e => setNewListName(e.target.value) }
+          onFocus={ (e: React.FocusEvent<HTMLInputElement>) => 
+            e.target.select()
+          }
           onBlur={saveTitle}
         />
       </Form>
