@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { cloneElement, FC, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import BCard from "react-bootstrap/Card";
 import Modal from 'react-bootstrap/Modal';
@@ -8,7 +8,7 @@ interface LoadProps {
   loadList: (serializedList: string) => void
 }
 
-const Load: FC<LoadProps> = ({ loadList }) => {
+const Load: FC<LoadProps> = ({ loadList, children }) => {
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     multiple: false,
@@ -27,7 +27,7 @@ const Load: FC<LoadProps> = ({ loadList }) => {
   }
 
   return <>
-    <Button variant="link" onClick={ () => setShow(true) }>Upload</Button>
+    { cloneElement(children as any, { onClick: () => setShow(true) }) }
     <Modal show={ show } onHide={ () => setShow(false) }>
       <Form onSubmit={onSubmit}>
         <Modal.Header closeButton>

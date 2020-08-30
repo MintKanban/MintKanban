@@ -1,5 +1,5 @@
 import CardData from "../Types/CardData";
-import React, { FC } from "react";
+import React, { cloneElement, FC } from "react";
 
 interface SaveProps {
   data: {
@@ -9,11 +9,22 @@ interface SaveProps {
 }
 
 const Save: FC<SaveProps> = props => {
-  const dataString = JSON.stringify(props.data);
-  const dataURI = `data:application/json;charset=utf-8,${encodeURIComponent(dataString)}`;
-  const defaultFileName = "tmrw.json";
 
-  return <a href={dataURI} download={defaultFileName}>{props.children}</a>
+  const stupidClick = () => {
+    const dataString = JSON.stringify(props.data);
+    const dataURI = `data:application/json;charset=utf-8,${encodeURIComponent(dataString)}`;
+    const defaultFileName = "tmrw.json";
+    const a = document.createElement("a");
+    a.href = dataURI;
+    a.download = defaultFileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  return <>
+    { cloneElement(props.children as any, { onClick: stupidClick }) }
+    </>
 }
 
 export default Save;
