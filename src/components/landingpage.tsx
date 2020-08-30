@@ -210,8 +210,7 @@ export default function LandingPage(){
         </Row>
 
       </Container>
-
-
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary"></nav>
     </>
   )
 }
