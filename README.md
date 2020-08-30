@@ -23,10 +23,10 @@ hosted by [Mintbean](https://www.mintbean.io/)
 ## Technologies
 
 - Frontend
-  - React
-  - Redux
   - Typescript
   - JavaScript
+  - React
+  - Redux
   - CSS
   - HTML
 
@@ -72,3 +72,6 @@ IMG HERE
 this will be code
 ```
 Explanation here
+
+## What we learned
+
