@@ -94,7 +94,7 @@ export default function LandingPage(){
         </Row>
 
         <Row className="mt-5">
-          <h2>Meet the Engineers</h2>
+          <h2 className="card-title">Meet the Engineers</h2>
           <CardGroup>
             <Card>
               <Card.Img variant="top" src="https://rrc-app.herokuapp.com/leo.jpeg" />
