@@ -11,7 +11,8 @@ function App() {
     inProgress: [new CardData("finish hackathon")],
     done: [new CardData(":P")]
   });
-
+  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
+  
   function setList(listName: string) {
     return {
       addCard: (card: CardData) => {
@@ -58,7 +59,6 @@ function App() {
     }
   }
 
-  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
 
   const move = (
     source: CardData[], destination: CardData[],
@@ -133,7 +133,7 @@ function App() {
           direction="horizontal"
           type="LIST"
         >
-          {(provided, snapshot) => (
+          {(provided) => (
             <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto">
               {
                 listOrder.map(listName => {

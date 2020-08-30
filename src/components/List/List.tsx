@@ -3,7 +3,9 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from "../Card/Card";
 import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
+import ListDropdown from "../ListDropdown/ListDropdown";
 import EditListTitle from "../EditListTitle/EditListTitle";
+import './list.scss'
 
 interface ListProps {
   list: CardData[],
@@ -48,30 +50,31 @@ export default function List({ list, listName, setList, index}: ListProps) {
           }}
         >
           <EditListTitle listName={listName} renameList={setList.renameList}/>
-          
+          <ListDropdown deleteList={setList.deleteList}/>
+
           <Droppable droppableId={`${listName}`} type="CARD">
-            {
-              (provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}>
-                  {
-                    list.map((card, idx) => (
-                      <Card
-                        key={idx}
-                        card={card}
-                        idx={idx}
-                        list={list}
-                        listName={listName}
-                        setList={setList}
-                      />
-                    ))
-                  }
-                  {provided.placeholder}
-                  <AddCard addCard={setList.addCard}/>
-                </div>
-              )
-            }
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}>
+                {
+                  list.map((card, idx) => (
+                    <Card
+                      key={idx}
+                      card={card}
+                      idx={idx}
+                      list={list}
+                      listName={listName}
+                      setList={setList}
+                    />
+                  ))
+                }
+                
+                <AddCard addCard={setList.addCard}/>
+
+                {provided.placeholder}
+              </div>
+            )}
           </Droppable>
         </div>
       )}
