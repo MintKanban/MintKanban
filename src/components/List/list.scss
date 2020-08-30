@@ -4,3 +4,46 @@
 .three-dot-menu:after {
   content: '\2807';
 }
+
+.first-div {
+  max-width: 20rem;
+}
+
+.second-div {
+  max-width: 40rem;
+}
+
+.woman-planning {
+  max-width:500px;
+}
+
+.first-div-master {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d3d39e;
+}
+
+.plan-for-growth {
+  max-width: 300px;
+  border-radius: 8px;
+  border: 2px solid #2c3e50;
+  padding: 10px;
+}
+
+.landing-page-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
+}
+
+.social-links img {
+  padding: 10px;
+  max-width: 50px;
+}
+
+.navbar-brand {
+  font-family: 'Rubik', sans-serif;
+  font-size: 30px;
+}
