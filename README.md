@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# tmrw
 
-## Available Scripts
+View [tmrw](INSERT LINK TO DEPLOYED SITE)
 
-In the project directory, you can run:
+## Engineers
+- [Bryan Sillorequez](http://www.linkedin.com/in/bsillo)
+- [Leo Yulin Li](https://www.linkedin.com/in/leoyulinli/)
+- [Ryan Tran](https://www.linkedin.com/in/rdtran/)
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About tmrw
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+TMRW is a single page app that allows a single user to create a customizable planner
+and to store their plans, goals, and tasks all in one place.  The information that 
+the user puts on this Kanban board is saved to local storage so the user can come 
+back to revisit their goals.
 
-### `yarn test`
+TMRW was created in three days as part of the JavaScript Olmpics Hack-a-thon 
+hosted by [Mintbean](https://www.mintbean.io/)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![frontpage](IMG PNG OF FRONTPAGE)
 
-### `yarn build`
+## Technologies
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Frontend
+  - React
+  - Redux
+  - Typescript
+  - JavaScript
+  - CSS
+  - HTML
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Deployment
+  - [Feature Peak](https://www.featurepeek.com)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Libraries
+  - React-Beautiful-DND
+  - React-Tours
+  - React-Bootstrap
+  
+## Features
 
-### `yarn eject`
+### Drag and drop columns and task cards
+  - User can move their task into different columns to keep track of progress or organise their data
+  - Columns can move freely, allowing users to put their lists in any order they want.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+IMG HERE
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Task creation and editable task
+  - Each task and list can be created by pressing the add buttons to their respected components
+  - Each task and list can be deleted at any time
+  - Once clicked, a task will expand into a modal for easy accessibility to read, write and edit
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+IMG HERE
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Download and upload 
+  - The user can download their plans to disk storage if they want to view their plans offline
+  - If the user has a list they want to upload, they can simply use the upload button
 
-## Learn More
+IMG HERE
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Tutorial
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  - Tutorial pop-ups to help guide new and current users how to use each feature
 
-### Code Splitting
+IMG HERE
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Code Snippets
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Insert something here
+```
+this will be code
+```
+Explanation here
