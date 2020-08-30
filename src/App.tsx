@@ -165,8 +165,8 @@ function App() {
                       <List key={listName}
                         list={lists[listName]}
                         listName={listName}
-                        setList={setList(listName)}
                         listOrder={listOrder}
+                        setList={setList(listName)}
                         index={listOrder.indexOf(listName)}
                       />
                     );
