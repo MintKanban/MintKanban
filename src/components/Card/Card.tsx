@@ -9,9 +9,11 @@ interface CardProps {
   list: CardData[],
   listName: string,
   setList: {
-    add: (card: CardData) => void;
-    edit: (index: number, list: CardData[]) => (card: CardData) => void;
-    delete: (index: number, list: CardData[]) => () => void;
+    addCard: (card: CardData) => void;
+    editCard: (index: number, list: CardData[]) => (card: CardData) => void;
+    deleteCard: (index: number, list: CardData[]) => () => void;
+    deleteList: () => void;
+    renameList: (newListName: string) => void;
   }
 }
 
@@ -26,8 +28,8 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
     <>
       <EditCard
         card={card}
-        editCard={ setList.edit(idx, list) }
-        deleteCard={ setList.delete(idx, list) }
+        editCard={ setList.editCard(idx, list) }
+        deleteCard={ setList.deleteCard(idx, list) }
         handleClose={ handleClose }
         show={ show }
       />
