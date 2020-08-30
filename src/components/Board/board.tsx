@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/index.scss';
-import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, DraggableLocation, Droppable, DropResult } from 'react-beautiful-dnd';
 import List from '../List/List';
 import AddList from '../AddList/AddList';
 import CardData from '../Types/CardData';
-
+import { Dropdown, DropdownButton } from "react-bootstrap";
+import { BoardNav } from "../NavBar/NavBar";
+import Load from "../File/Load";
+import Save from "../File/Save";
 
 
 function Board() {
@@ -15,12 +18,16 @@ function Board() {
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
 
+  function loadList(serializedList: string) {
+    const { lists, listOrder } = JSON.parse(serializedList);
+    setLists(lists);
+    setListOrder(listOrder);
+  }
+
   useEffect(() => {
     const savedList = localStorage.getItem("tmrw-kanban");
     if (savedList) {
-      const { lists, listOrder } = JSON.parse(savedList);
-      setLists(lists);
-      setListOrder(listOrder);
+      loadList(savedList);
     }
   }, []);
 
@@ -141,6 +148,20 @@ function Board() {
 
   return (
     <>
+      <BoardNav>
+        <DropdownButton id="dropdown-menu-button" title="Menu" variant="secondary" alignRight>
+          <Load loadList={loadList}>
+            <Dropdown.Item>
+              Load
+            </Dropdown.Item>
+          </Load>
+          <Save data={{lists, listOrder}}>
+            <Dropdown.Item>
+              Save
+            </Dropdown.Item>
+          </Save>
+        </DropdownButton>
+      </BoardNav>
       <div>
         <DragDropContext
           onDragEnd={onDragEnd}
@@ -151,7 +172,7 @@ function Board() {
             type="LIST"
           >
             {(provided) => (
-              <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3">
+              <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
                 {
                   listOrder.map(listName => {
                     return (
