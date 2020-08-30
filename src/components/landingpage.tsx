@@ -9,46 +9,32 @@ export default function LandingPage(){
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <Container>
-            <Link to="/" className="navbar-brand">tmrw</Link>
-            <button className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarColor01"
-              aria-controls="navbarColor01"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarColor01">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <span className="sr-only">(current)</span>
-                </li>
-              </ul>
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
-                Go to your board
-              </button>
-            </div>
+          <Link className="navbar-brand" to='/'>tmrw</Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarColor01">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <span className="sr-only">(current)</span>
+              </li>
+            </ul>
+            <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button></Link>
+          </div>
           </Container>
         </nav>
 
       <Container className="landing-page-main">
         <Row>
           <Col className="first-div-master">
-            <div className="first-div">
-              <div className="card-body">
-                <h3 className="card-title">Plan for your tmrw.</h3>
-                <p className="card-text">
-                  From creating goals, no matter how big or small, tmrw is here to help you out today
-                </p>
-                <button className="btn btn-secondary my-2 my-sm-0"
-                  type="submit"
-                >
-                  Go to your board
-                </button>
-              </div>
-            </div>
+                <div className="first-div">
+                  <div className="card-body">
+                    <h3 className="card-title">Plan for your tmrw.</h3>
+                    <p className="card-text">From creating goals, no matter how big or small, tmrw is here to help you out today</p>
+                  <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Go to your board</button></Link>
+                  </div>
+                </div>
           </Col>
           <Col>
             <img className="woman-planning"
@@ -116,7 +102,7 @@ export default function LandingPage(){
                 </p>
                 
                 <p>Start creating your board today!</p>
-                <button className="btn btn-secondary my-2 my-sm-0" type="submit">Start your board</button>
+                <Link to='/board'><button className="btn btn-secondary my-2 my-sm-0" type="submit">Start your board</button></Link>
               </div>
             </div>
           </Col>
