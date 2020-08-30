@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardData from '../Types/CardData';
 import BCard from 'react-bootstrap/Card';
 import { Button, Form, InputGroup } from "react-bootstrap";
@@ -16,9 +16,15 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
   const updateListName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setListName(e.target.value);
   };
+  const [duplicate, setDuplicate] = useState(false);
+  const listOrderCopy = listOrder.concat().map( title => title.toLowerCase());
+  useEffect(() => {
+    setDuplicate(listOrderCopy.includes(listName.toLowerCase()));
+  }, [listName]);
   const addList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    if (duplicate) return null;
     setLists({ ...lists, [listName]: [] });
     setListOrder(listOrder.concat([listName]));
     setAddButton(false);
@@ -28,21 +34,26 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
   function cardBody() {
     if (addButton) {
       return <>
-        <BCard.Header>
-          <Form onSubmit={ addList }>
-            <InputGroup>
-              <Form.Control type="text"
-                            value={ listName }
-                            onChange={ updateListName }
-                            required
-                            autoFocus
-              />
-              <InputGroup.Append>
-                <Button type="submit">Create</Button>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form>
-        </BCard.Header>
+          <BCard.Header>
+            <Form onSubmit={ addList }>
+              <InputGroup>
+                <Form.Control type="text"
+                              value={ listName }
+                              onChange={ updateListName }
+                              required
+                              autoFocus
+                />
+                <InputGroup.Append>
+                  <Button type="submit">Create</Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
+          </BCard.Header>
+          <BCard.Body>
+            <div>
+              { duplicate ? 'That list already exists' : '' }
+            </div>
+          </BCard.Body>
         </>
     } else {
       return <BCard.Body className="d-flex align-items-center justify-content-center"  onClick={ () => setAddButton(true) }>
