@@ -1,3 +1,9 @@
 @import "~bootswatch/dist/flatly/variables";
 @import "~bootstrap";
 @import "~bootswatch/dist/flatly/bootswatch";
+
+.list-card {
+    min-width: 16em;
+    width: 16em;
+    min-height: 16em;
+}
