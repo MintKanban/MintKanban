@@ -45,8 +45,8 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
         </BCard.Header>
         </>
     } else {
-      return <BCard.Body className="d-flex align-items-center justify-content-center">
-        <Button onClick={ () => setAddButton(true) } variant="link">Add a new list</Button>
+      return <BCard.Body className="d-flex align-items-center justify-content-center"  onClick={ () => setAddButton(true) }>
+        <Button variant="link">Add a new list</Button>
       </BCard.Body>
     }
   }

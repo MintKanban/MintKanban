@@ -1,31 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Dropdown } from "react-bootstrap";
 
 interface ListDropdownProps {
   deleteList: () => void
 }
 
 export default function ListDropdown({ deleteList }: ListDropdownProps) {
-  const [show, setShow] = useState(false);
-
   return (
-    <div className={`dropdown ${show ? 'show' : ''}`}>
-      <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded={show}
-      onClick={() => setShow(!show)}
-      onBlur={(e: any) => {
-        if (!e.relatedTarget || e.relatedTarget.className !== 'dropdown-item') {
-          setShow(false);
-        }
-      }}
-      >
-        <div className="three-dot-menu"></div>
-      </button>
-      <div className={`dropdown-menu ${show ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-        <button className="dropdown-item"
-          onClick={deleteList}
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  );
+    <Dropdown>
+      <Dropdown.Toggle variant="secondary" size="sm">
+        <div className="three-dot-menu" />
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={ deleteList }>Delete</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  )
 }
