@@ -15,12 +15,16 @@ function Board() {
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
 
+  function loadList(serializedList: string) {
+    const { lists, listOrder } = JSON.parse(serializedList);
+    setLists(lists);
+    setListOrder(listOrder);
+  }
+
   useEffect(() => {
     const savedList = localStorage.getItem("tmrw-kanban");
     if (savedList) {
-      const { lists, listOrder } = JSON.parse(savedList);
-      setLists(lists);
-      setListOrder(listOrder);
+      loadList(savedList);
     }
   }, []);
 
