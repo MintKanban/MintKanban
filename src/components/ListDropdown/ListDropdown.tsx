@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import DeleteListConfirmation from '../DeleteListConfirmation/DeleteListConfirmation';
+import Dropdown from 'react-bootstrap/esm/Dropdown';
 
 interface ListDropdownProps {
+  listName: string,
   deleteList: () => void
 }
 
-export default function ListDropdown({ deleteList }: ListDropdownProps) {
-  const [show, setShow] = useState(false);
-
+export default function ListDropdown(
+  { listName, deleteList }: ListDropdownProps) {
+  
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  
   return (
-    <div className={`dropdown ${show ? 'show' : ''}`}>
-      <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded={show}
-      onClick={() => setShow(!show)}
-      onBlur={(e: any) => {
-        if (!e.relatedTarget || e.relatedTarget.className !== 'dropdown-item') {
-          setShow(false);
-        }
-      }}
+    <DropdownButton id="dropdown-item-button"
+      title={<div className="three-dot-menu"></div>}
+    >
+      <Dropdown.Item as="button"
+        onClick={() => setShowConfirmation(true)}
       >
-        <div className="three-dot-menu"></div>
-      </button>
-      <div className={`dropdown-menu ${show ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-        <button className="dropdown-item"
-          onClick={deleteList}
-        >
-          Delete
-        </button>
-      </div>
-    </div>
+        Delete
+      </Dropdown.Item>
+
+      <DeleteListConfirmation
+        show={showConfirmation}
+        listName={listName}
+        deleteList={deleteList}
+        handleClose={() => setShowConfirmation(false)}
+      />
+    </DropdownButton>
   );
 }

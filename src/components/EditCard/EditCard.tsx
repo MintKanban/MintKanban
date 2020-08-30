@@ -12,7 +12,8 @@ interface EditCardProps {
   show: boolean
 }
 
-export default function EditCard({ card, editCard, deleteCard, handleClose, show }: EditCardProps) {
+export default function EditCard(
+  { card, editCard, deleteCard, handleClose, show }: EditCardProps) {
 
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description)

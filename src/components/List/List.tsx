@@ -50,7 +50,7 @@ export default function List({ list, listName, setList, index}: ListProps) {
           }}
         >
           <EditListTitle listName={listName} renameList={setList.renameList}/>
-          <ListDropdown deleteList={setList.deleteList}/>
+          <ListDropdown listName={listName} deleteList={setList.deleteList}/>
 
           <Droppable droppableId={`${listName}`} type="CARD">
             {(provided, snapshot) => (
