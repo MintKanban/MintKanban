@@ -38,9 +38,9 @@ function App() {
         });
       },
       deleteList: () => {
-        const listCopy = {...lists};
-        delete listCopy[listName];
-        setLists(listCopy);
+        const listsCopy = {...lists};
+        delete listsCopy[listName];
+        setLists(listsCopy);
 
         const listOrderCopy = [...listOrder];
         listOrderCopy.splice(listOrder.indexOf(listName), 1)
