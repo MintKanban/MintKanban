@@ -36,7 +36,7 @@ export default function LandingPage(){
                 </div>
           </Col>
           <Col>
-            <img className = "woman-planning" src="https://www.coderworldlabs.com/images/Web-Development.png" />
+            <img className = "woman-planning" src="https://www.coderworldlabs.com/images/Web-Development.png" alt="woman-planning"/>
           </Col>
         </Row>
 
@@ -52,13 +52,13 @@ export default function LandingPage(){
             </div>
           </Col>
           <Col xs={5}>
-          <img className="plan-for-growth" src="https://www.startelelogic.com/assets/images/custom/custom-software-development.png"/>
+          <img className="plan-for-growth" src="https://www.startelelogic.com/assets/images/custom/custom-software-development.png" alt="growth"/>
           </Col>
         </Row>
 
         <Row className="mt-5">
           <Col xs={4}>
-            <img className="plan-for-growth" src="https://www.nicepng.com/png/full/29-296364_custom-software-development-in-islamabad-pakistan-system-administration.png"/>
+            <img className="plan-for-growth" src="https://www.nicepng.com/png/full/29-296364_custom-software-development-in-islamabad-pakistan-system-administration.png" alt="growth"/>
           </Col>
           <Col>
             <div className="second-div" >
@@ -89,7 +89,7 @@ export default function LandingPage(){
             </div>
           </Col>
           <Col xs={5}>
-            <img className="plan-for-growth" src="https://live.staticflickr.com/65535/50286276283_a6b48e448e_k.jpg" />
+            <img className="plan-for-growth" src="https://live.staticflickr.com/65535/50286276283_a6b48e448e_k.jpg" alt="growth"/>
           </Col>
         </Row>
 
