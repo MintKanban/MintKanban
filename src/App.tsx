@@ -4,6 +4,9 @@ import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react
 import List from './components/List/List';
 import AddList from './components/AddList/AddList';
 import CardData from './components/Types/CardData';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LandingPage from './components/landingpage';
+
 
 function App() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
@@ -123,42 +126,51 @@ function App() {
     }
   }
   
+
   return (
-    <div>
-      <DragDropContext
-        onDragEnd={onDragEnd}
-      >
-        <Droppable
-          droppableId="main-droppable"
-          direction="horizontal"
-          type="LIST"
+    <>
+      <Router>
+        <Switch>
+          <Route path="/" component={LandingPage} />
+        </Switch>
+      </Router>
+
+      <div>
+        <DragDropContext
+          onDragEnd={onDragEnd}
         >
-          {(provided) => (
-            <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3">
-              {
-                listOrder.map(listName => {
-                  return (
-                    <List key={listName}
-                      list={lists[listName]}
-                      listName={listName}
-                      setList={setList(listName)}
-                      index={listOrder.indexOf(listName)}
-                    />
-                  );
-                })
-              }
-              {provided.placeholder}
-              <AddList
-                lists={lists}
-                setLists={setLists}
-                listOrder={listOrder}
-                setListOrder={setListOrder}
-              />
-            </main>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+          <Droppable
+            droppableId="main-droppable"
+            direction="horizontal"
+            type="LIST"
+          >
+            {(provided) => (
+              <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3">
+                {
+                  listOrder.map(listName => {
+                    return (
+                      <List key={listName}
+                        list={lists[listName]}
+                        listName={listName}
+                        setList={setList(listName)}
+                        index={listOrder.indexOf(listName)}
+                      />
+                    );
+                  })
+                }
+                {provided.placeholder}
+                <AddList
+                  lists={lists}
+                  setLists={setLists}
+                  listOrder={listOrder}
+                  setListOrder={setListOrder}
+                />
+              </main>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
+    </>
   );
 }
 
