@@ -1,31 +1,54 @@
 import React, { useState } from 'react';
+import DeleteListConfirmation from '../DeleteListConfirmation/DeleteListConfirmation';
 
 interface ListDropdownProps {
+  listName: string,
   deleteList: () => void
 }
 
-export default function ListDropdown({ deleteList }: ListDropdownProps) {
-  const [show, setShow] = useState(false);
+export default function ListDropdown(
+  { listName, deleteList }: ListDropdownProps) {
+  
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
+  const openConfirmation = () => {
+    setShowDropdown(false);
+    setShowConfirmation(true);
+  };
+  
   return (
-    <div className={`dropdown ${show ? 'show' : ''}`}>
-      <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded={show}
-      onClick={() => setShow(!show)}
-      onBlur={(e: any) => {
-        if (!e.relatedTarget || e.relatedTarget.className !== 'dropdown-item') {
-          setShow(false);
-        }
-      }}
+    <div className={`dropdown ${showDropdown ? 'show' : ''}`}>
+      <button className="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-expanded={showDropdown}
+        onClick={() => setShowDropdown(!showDropdown)}
+        onBlur={(e: any) => {
+          if (!e.relatedTarget || e.relatedTarget.className !== 'dropdown-item') {
+            setShowDropdown(false);
+          }
+        }}
       >
         <div className="three-dot-menu"></div>
       </button>
-      <div className={`dropdown-menu ${show ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
+      <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`} 
+        aria-labelledby="dropdownMenuButton"
+      >
         <button className="dropdown-item"
-          onClick={deleteList}
+          onClick={openConfirmation}
         >
           Delete
         </button>
       </div>
+
+      <DeleteListConfirmation
+        show={showConfirmation}
+        listName={listName}
+        deleteList={deleteList}
+        handleClose={() => setShowConfirmation(false)}
+      />
     </div>
   );
 }
