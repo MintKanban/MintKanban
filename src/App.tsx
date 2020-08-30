@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/index.scss';
 import { DragDropContext, DropResult, DraggableLocation, Droppable } from 'react-beautiful-dnd';
 import List from './components/List/List';
@@ -14,7 +14,20 @@ function App() {
     inProgress: [new CardData("finish hackathon")],
     done: [new CardData(":P")]
   });
-  const [listOrder, setListOrder] = useState(['todo', 'inProgress', 'done']);
+  const [listOrder, setListOrder] = useState(Object.keys(lists));
+
+  useEffect(() => {
+    const savedList = localStorage.getItem("tmrw-kanban");
+    if (savedList) {
+      const { lists, listOrder } = JSON.parse(savedList);
+      setLists(lists);
+      setListOrder(listOrder);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tmrw-kanban", JSON.stringify({ lists, listOrder }));
+  }, [lists, listOrder]);
   
   function setList(listName: string) {
     return {
