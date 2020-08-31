@@ -17,6 +17,7 @@ function Board() {
     done: [new CardData(":P")]
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
+  const [editModalTour, setEditModalTour] = useState(false);
 
   function loadList(serializedList: string) {
     const { lists, listOrder } = JSON.parse(serializedList);
@@ -161,6 +162,8 @@ function Board() {
       <BoardNav>
         <TourComponent
           firstVisit={localStorage.getItem('tmrw-kanban') === null}
+          editModalTour={editModalTour}
+          setEditModalTour={setEditModalTour}
         />
         <DropdownButton id="dropdown-menu-button" title="Menu" variant="secondary" alignRight>
           <Load loadList={loadList}>
@@ -198,6 +201,7 @@ function Board() {
                         setList={setList(listName)}
                         listOrder={listOrder}
                         moveCardToList={moveCardToList(listName)}
+                        editModalTour={editModalTour}
                       />
                     );
                   })

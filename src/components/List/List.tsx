@@ -20,11 +20,13 @@ interface ListProps {
     renameList: (newListName: string) => void;
   },
   listOrder: string[],
-  moveCardToList: (index: number) => (to: string) => void
+  moveCardToList: (index: number) => (to: string) => void,
+  editModalTour: boolean
 }
 
 export default function List(
-  { index, list, listName, setList, listOrder, moveCardToList }: ListProps) {
+  { index, list, listName, setList, listOrder, moveCardToList, editModalTour }:
+    ListProps) {
 
   const [duplicate, setDuplicate] = useState(false);
   
@@ -86,12 +88,14 @@ export default function List(
                           setList={setList}
                           listOrder={ listOrder }
                           moveCardToList={moveCardToList(idx)}
+                          isTourExample={index === 0 && idx === 0}
+                          editModalTour={editModalTour}
                         />
                       ))
                     }
                     {provided.placeholder}
                     <AddCard
-                      id={index === 0 ? 'seventh-step' : ''}
+                      id={index === 0 ? 'eigth-step' : ''}
                       addCard={setList.addCard}
                     />
                   </BCard.Body>

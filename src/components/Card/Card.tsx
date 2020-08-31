@@ -18,13 +18,18 @@ interface CardProps {
     deleteCard: (index: number, list: CardData[]) => () => void;
     deleteList: () => void;
     renameList: (newListName: string) => void;
-  }
+  },
+  isTourExample: boolean,
+  editModalTour: boolean,
 }
 
 export default function Card(
-  { id, card, idx, list, listName, setList, moveCardToList, listOrder }: CardProps) {
+  {
+    id, card, idx, list, listName, setList, moveCardToList, listOrder,
+    isTourExample, editModalTour
+  }: CardProps) {
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(isTourExample ? editModalTour : false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,6 +37,7 @@ export default function Card(
   return (
     <>
       <EditCard
+        id={isTourExample ? 'seventh-step' : ''}
         card={ card }
         editCard={ setList.editCard(idx, list) }
         deleteCard={ setList.deleteCard(idx, list) }
