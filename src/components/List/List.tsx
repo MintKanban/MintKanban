@@ -29,7 +29,7 @@ export default function List(
   const [duplicate, setDuplicate] = useState(false);
   
   return (
-    <div id={index === 0 ? 'first-step' : ''}>
+    <div id={index === 0 ? 'second-step' : ''}>
       <Draggable
         key={`${listName}`}
         draggableId={`${listName}`}
@@ -43,7 +43,7 @@ export default function List(
             className="list-card mr-3 mb-3"
           >
             <BCard.Header>
-              <div id={index === 0 ? 'second-step' : ''}
+              <div id={index === 0 ? 'third-step' : ''}
                 className="d-flex flex-row justify-content-between align-items-baseline"
               >
                 <EditListTitle
@@ -54,7 +54,7 @@ export default function List(
                   renameList={setList.renameList}
                 />
                 <ListDropdown
-                  id={index === 0 ? 'third-step' : ''}
+                  id={index === 0 ? 'fourth-step' : ''}
                   listName={listName}
                   deleteList={setList.deleteList}
                   />
@@ -70,14 +70,14 @@ export default function List(
                 </BCard.Text>
               </BCard>
             </BCard.Header>
-            <div id={index === 0 ? 'fourth-step' : ''}>
+            <div id={index === 0 ? 'fifth-step' : ''}>
               <Droppable droppableId={`${listName}`} type="CARD">
                 {(provided) => (
                   <BCard.Body ref={provided.innerRef}>
                     {
                       list.map((card, idx) => (
                         <Card
-                          id={index === 0 && idx === 0 ? 'fifth-step' :''}
+                          id={index === 0 && idx === 0 ? 'sixth-step' :''}
                           key={idx}
                           card={card}
                           idx={idx}
@@ -91,7 +91,7 @@ export default function List(
                     }
                     {provided.placeholder}
                     <AddCard
-                      id={index === 0 ? 'sixth-step' : ''}
+                      id={index === 0 ? 'seventh-step' : ''}
                       addCard={setList.addCard}
                     />
                   </BCard.Body>
