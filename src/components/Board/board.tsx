@@ -16,7 +16,6 @@ function Board() {
     done: [new CardData(":P")]
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
-  const [editModalTour, setEditModalTour] = useState(false);
 
   function loadList(serializedList: string) {
     const { lists, listOrder } = JSON.parse(serializedList);
