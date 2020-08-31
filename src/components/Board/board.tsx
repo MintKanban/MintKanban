@@ -179,7 +179,6 @@ function Board() {
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
-                        editModalTour={editModalTour}
                       />
                     );
                   })
