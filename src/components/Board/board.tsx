@@ -158,6 +158,7 @@ function Board() {
   return (
     <>
       <BoardNav>
+        <TourComponent />
         <DropdownButton id="dropdown-menu-button" title="Menu" variant="secondary" alignRight>
           <Load loadList={loadList}>
             <Dropdown.Item>
@@ -209,8 +210,6 @@ function Board() {
             )}
           </Droppable>
         </DragDropContext>
-
-        <TourComponent/>
       </div>
     </>
   );
