@@ -23,7 +23,7 @@ export default function TourComponent({ firstVisit }: TourComponentProps) {
       content: () => (
         <div>
           <div>
-            "Welcome to tmr! This is your board!
+            "Welcome to tmrw! This is your board!
           </div>
           <br/>
           <div>
