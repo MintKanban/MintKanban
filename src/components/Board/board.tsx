@@ -159,7 +159,9 @@ function Board() {
   return (
     <>
       <BoardNav>
-        <TourComponent />
+        <TourComponent
+          firstVisit={localStorage.getItem('tmrw-kanban') === null}
+        />
         <DropdownButton id="dropdown-menu-button" title="Menu" variant="secondary" alignRight>
           <Load loadList={loadList}>
             <Dropdown.Item>
