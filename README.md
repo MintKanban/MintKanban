@@ -1,5 +1,6 @@
 # tmrw
-
+![Github Pages](https://github.com/MintKanban/MintKanban/workflows/Github%20Pages/badge.svg)
+![Build and ping FeaturePeek](https://github.com/MintKanban/MintKanban/workflows/Build%20and%20ping%20FeaturePeek/badge.svg)
 ## View [tmrw](https://mintkanban.github.io/MintKanban/)
 ![Screen-Shot-2020-08-30-at-5.59.05-PM.png](https://s8.gifyu.com/images/Screen-Shot-2020-08-30-at-5.59.05-PM.png)
 
@@ -33,6 +34,7 @@ hosted by [Mintbean](https://www.mintbean.io/)
 
 - Deployment
   - [Feature Peak](https://www.featurepeek.com)
+  - GitHub Pages
 
 - Libraries
   - React-Beautiful-DND
