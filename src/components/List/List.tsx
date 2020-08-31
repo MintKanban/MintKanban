@@ -20,11 +20,10 @@ interface ListProps {
     renameList: (newListName: string) => void;
   },
   listOrder: string[],
-  editModalTour: boolean
 }
 
 export default function List(
-  { index, list, listName, setList, listOrder, editModalTour }:
+  { index, list, listName, setList, listOrder }:
   ListProps
 ) {
 
@@ -88,7 +87,6 @@ export default function List(
                           tour={
                             listOrder.indexOf(listName) === 0 ? true : false
                           }
-                          editModalTour={editModalTour}
                         />
                       ))
                     }

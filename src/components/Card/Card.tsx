@@ -16,14 +16,13 @@ interface CardProps {
     deleteList: () => void;
     renameList: (newListName: string) => void;
   },
-  tour: boolean,
-  editModalTour: boolean
+  tour: boolean
 }
 
 export default function Card(
-  { card, idx, list, listName, setList, tour, editModalTour }: CardProps) {
+  { card, idx, list, listName, setList, tour, }: CardProps) {
 
-  const [show, setShow] = useState(editModalTour ? true : false);
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
