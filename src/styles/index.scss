@@ -12,4 +12,27 @@
 body {
     font-family: 'Rubik', sans-serif;
 }
+
+main {
+
+    &::-webkit-scrollbar {
+        width: 0.5em;
+        height: 0.5em;
+        cursor: default;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #00000033;
+        border-radius: 0.25em;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #00000044;
+    }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap');
