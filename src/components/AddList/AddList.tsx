@@ -4,13 +4,15 @@ import BCard from 'react-bootstrap/Card';
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 interface AddListProps {
-  lists: Record<string, CardData[]>
+  lists: Record<string, CardData[]>,
   setLists: React.Dispatch<React.SetStateAction<Record<string, CardData[]>>>
   listOrder: string[]
   setListOrder: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-export default function AddList({ lists, setLists, listOrder, setListOrder }: AddListProps) {
+export default function AddList(
+  { lists, setLists, listOrder, setListOrder }: AddListProps) {
+
   const [addButton, setAddButton] = useState(false);
   const [listName, setListName] = useState('');
   const updateListName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,9 +58,14 @@ export default function AddList({ lists, setLists, listOrder, setListOrder }: Ad
           </BCard.Body>
         </>
     } else {
-      return <BCard.Body className="d-flex align-items-center justify-content-center"  onClick={ () => setAddButton(true) }>
-        <Button variant="link">Add a new list</Button>
-      </BCard.Body>
+      return (
+        <BCard.Body id="seventh-step"
+          className="d-flex align-items-center justify-content-center"
+          onClick={ () => setAddButton(true) }
+        >
+          <Button variant="link">Add a new list</Button>
+        </BCard.Body>
+      );
     }
   }
 

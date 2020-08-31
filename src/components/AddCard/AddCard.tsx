@@ -5,10 +5,11 @@ import CardData from '../Types/CardData';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 interface AddCardProps {
-    addCard: (card: CardData) => void
+  id: string,
+  addCard: (card: CardData) => void
 }
 
-export default function AddCard({ addCard }: AddCardProps) {
+export default function AddCard({ id, addCard }: AddCardProps) {
   const [added, setAdded] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -24,10 +25,12 @@ export default function AddCard({ addCard }: AddCardProps) {
   return (
     <>
       <div>
-        <Form onSubmit={submitCard}>
+        <Form id={id} onSubmit={submitCard}>
           <InputGroup>
             <Form.Control type="text"
-                          placeholder={added ? 'Add another card' : 'Add a card'}
+                          placeholder={
+                            added ? 'Add another card' : 'Add a card'
+                          }
                           value={title}
                           onChange={ e =>  setTitle(e.target.value) }
                           required

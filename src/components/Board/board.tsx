@@ -4,6 +4,7 @@ import { DragDropContext, DraggableLocation, Droppable, DropResult } from 'react
 import List from '../List/List';
 import AddList from '../AddList/AddList';
 import CardData from '../Types/CardData';
+import TourComponent from '../Tour/TourComponent';
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { BoardNav } from "../NavBar/NavBar";
 import Load from "../File/Load";
@@ -169,7 +170,9 @@ function Board() {
             type="LIST"
           >
             {(provided) => (
-              <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
+              <main id="eigth-step"
+                ref={provided.innerRef}
+                className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
                 {
                   listOrder.map((listName, idx) => {
                     return (
@@ -195,6 +198,7 @@ function Board() {
           </Droppable>
         </DragDropContext>
 
+        <TourComponent/>
       </div>
     </>
   );
