@@ -121,7 +121,7 @@ export default function LandingPage(){
         </div>
 
         <div className="landing-page-divider">
-          <Row className="mt-5">
+          <Row className="mt-2">
             <Col>
               <h2 className="card-title">This is how it works!</h2>
               <p className="card-text">
@@ -134,18 +134,32 @@ export default function LandingPage(){
             </Col>
           </Row>
 
-        <Row className="mt-5">
-          <Col>
-            <img src="https://s8.gifyu.com/images/tmrw_tasks.gif" alt="" />
-          </Col>
-          <Col>
-            <h2 className="card-title">Create, Edit, and Delete</h2>
-            <p className="card-text">
-              You can create any task, move it around, edit its title and desctiption, 
-              and delete it whenever you wish!
-            </p>
-          </Col>
-        </Row>
+          <Row className="mt-5">
+            <Col>
+              <img src="https://s8.gifyu.com/images/tmrw_tasks.gif" alt="" />
+            </Col>
+            <Col>
+              <h2 className="card-title">Create, Edit, and Delete</h2>
+              <p className="card-text">
+                You can create any task, move it around, edit its title and desctiption, 
+                and delete it whenever you wish!
+              </p>
+            </Col>
+          </Row>
+
+          <Row className="mt-5 mb-3">
+            <Col>
+              <h2 className="card-title">Download and Upload your lists!</h2>
+              <p className="card-text">
+                Take your list with you offline! Download it and you can transfer 
+                it to another computer.  Have a JSON list file on your computer?  
+                Upload it to tmrw to have it readable and odered for you.
+              </p>
+            </Col>
+            <Col>
+              <img src="https://s8.gifyu.com/images/tmrw_updown.gif" alt=""/>
+            </Col>
+          </Row>
         </div>
 
         <Row className="mt-5">
@@ -194,7 +208,7 @@ export default function LandingPage(){
               <Card.Body>
                 <Card.Title>Bryan Sillorequez</Card.Title>
                 <Card.Text>
-                  Bryan Sillorequez is a software engineer with an eye for
+                  Bryan is a software engineer with an eye for
                   design. Before software engineering, he was a photographer,
                   which allows him to apply his technical design background to
                   create eye-catching apps with great functionality. He has
