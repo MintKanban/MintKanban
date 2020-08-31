@@ -125,7 +125,8 @@ export default function LandingPage(){
             <Col>
               <h2 className="card-title">This is how it works!</h2>
               <p className="card-text">
-                Drag and Drop you list in what ever order suits you.
+                Drag and Drop your list in what ever order suits you.  Do the same
+                with your tasks!
               </p>
             </Col>
             <Col>
