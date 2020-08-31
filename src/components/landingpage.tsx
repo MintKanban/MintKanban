@@ -153,7 +153,7 @@ export default function LandingPage(){
               <p className="card-text">
                 Take your list with you offline! Download it and you can transfer 
                 it to another computer.  Have a JSON list file on your computer?  
-                Upload it to tomorrow to have it readable and odered for you.
+                Upload it to tmrw to have it readable and odered for you.
               </p>
             </Col>
             <Col>
@@ -208,7 +208,7 @@ export default function LandingPage(){
               <Card.Body>
                 <Card.Title>Bryan Sillorequez</Card.Title>
                 <Card.Text>
-                  Bryan Sillorequez is a software engineer with an eye for
+                  Bryan is a software engineer with an eye for
                   design. Before software engineering, he was a photographer,
                   which allows him to apply his technical design background to
                   create eye-catching apps with great functionality. He has
