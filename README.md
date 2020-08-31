@@ -90,8 +90,10 @@ we applied multi-level currying making the code more readable for other programm
 ### Threading and keeping code dry
 
 ```typescript
-export default function EditCard(
-  { card, editCard, deleteCard, handleClose, show, moveCardToList, listOrder, listName }: EditCardProps) {
+export default function EditCard({ 
+    id, card, editCard, deleteCard, handleClose, show, moveCardToList,
+    listOrder, listName
+}: EditCardProps) {
 
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description)
@@ -115,37 +117,39 @@ export default function EditCard(
       <Modal.Header closeButton>
         <Modal.Title>Edit</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group controlId="title">
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text"
-                          placeholder={'Insert a task'}
-                          value={title}
-                          onChange={e => setTitle(e.target.value)}
-                          required
-            />
-          </Form.Group>
-          <Form.Group controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows={3}
-                          value={description}
-                          onChange={e => setDescription(e.target.value)}>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="in-list">
-            <Form.Label>Move To</Form.Label>
-            <Form.Control as="select" value={ moveTo } onChange={ e => setMoveTo(e.target.value) }>
-              { listOrder.map(list => <option key={ list }>{ list }</option>)}
-            </Form.Control>
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary" onClick={save}>Save Changes</Button>
-        <Button variant="danger" onClick={remove}>Delete</Button>
-        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-      </Modal.Footer>
+      <div id={id}>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text"
+                            placeholder={'Insert a task'}
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                            required
+              />
+            </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3}
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="in-list">
+              <Form.Label>Move To</Form.Label>
+              <Form.Control as="select" value={ moveTo } onChange={ e => setMoveTo(e.target.value) }>
+                { listOrder.map(list => <option key={ list }>{ list }</option>)}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={save}>Save Changes</Button>
+          <Button variant="danger" onClick={remove}>Delete</Button>
+          <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+        </Modal.Footer>
+      </div>
     </Modal>
   );
 }
