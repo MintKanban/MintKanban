@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 import Card from "../Card/Card";
 import CardData from "../Types/CardData";
 import AddCard from "../AddCard/AddCard";
@@ -19,11 +19,12 @@ interface ListProps {
     deleteList: () => void;
     renameList: (newListName: string) => void;
   },
-  listOrder: string[]
+  listOrder: string[],
+  moveCardToList: (index: number) => (to: string) => void
 }
 
 export default function List(
-  { index, list, listName, setList, listOrder }: ListProps) {
+  { index, list, listName, setList, listOrder, moveCardToList }: ListProps) {
 
   const [duplicate, setDuplicate] = useState(false);
   
@@ -83,6 +84,8 @@ export default function List(
                           list={list}
                           listName={listName}
                           setList={setList}
+                          listOrder={ listOrder }
+                          moveCardToList={moveCardToList(idx)}
                         />
                       ))
                     }
