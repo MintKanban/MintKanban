@@ -174,11 +174,8 @@ export default function LandingPage(){
                 <Card.Title>Leo YulinLi</Card.Title>
                 <Card.Text>
                   Leo is a software engineer experienced in React, Ruby on
-                  Rails, and Java/Kotlin development. Utilizing his extensive
-                  programming knowledge, he played an integral part in building
-                  the back end and utilizing async requests in parallel to
-                  improve load times. He is passionate about solving problems
-                  that positively impact every day life.
+                  Rails, and Java/Kotlin development. He is passionate about
+                  solving problems that positively impact every day life.
                 </Card.Text>
               </Card.Body>
               <Card.Footer>
