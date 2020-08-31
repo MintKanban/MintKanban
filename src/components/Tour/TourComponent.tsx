@@ -28,7 +28,7 @@ export default function TourComponent({ firstVisit }: TourComponentProps) {
     },
     {
       selector: '#third-step',
-      content: 'If you want to delete a lest, you can do so here.'
+      content: 'If you want to delete a list, you can do so here.'
     },
     {
       selector: '#fourth-step',
