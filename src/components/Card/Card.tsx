@@ -37,11 +37,7 @@ export default function Card(
       setShow(false);
     }
   }, [isTourExample, editModalTour]);
-
-  if (isTourExample){
-    console.log('show:', show);
-    console.log('editModalTour:', editModalTour);
-  }
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
