@@ -9,6 +9,7 @@ import { BoardNav } from "../NavBar/NavBar";
 import Load from "../File/Load";
 import Save from "../File/Save";
 
+import TourComponent from '../Tour/TourComponent';
 
 function Board() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
@@ -17,6 +18,7 @@ function Board() {
     done: [new CardData(":P")]
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
+  const [editModalTour, setEditModalTour] = useState(false);
 
   function loadList(serializedList: string) {
     const { lists, listOrder } = JSON.parse(serializedList);
@@ -81,7 +83,6 @@ function Board() {
     }
   }
 
-
   const move = (
     source: CardData[], destination: CardData[],
     droppableSource: DraggableLocation,
@@ -145,7 +146,6 @@ function Board() {
     }
   }
 
-
   return (
     <>
       <BoardNav>
@@ -174,14 +174,15 @@ function Board() {
             {(provided) => (
               <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
                 {
-                  listOrder.map(listName => {
+                  listOrder.map((listName, idx) => {
                     return (
                       <List key={listName}
+                        index={idx}
                         list={lists[listName]}
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
-                        index={listOrder.indexOf(listName)}
+                        editModalTour={editModalTour}
                       />
                     );
                   })
@@ -197,6 +198,11 @@ function Board() {
             )}
           </Droppable>
         </DragDropContext>
+
+        <TourComponent
+          editModalTour={editModalTour}
+          setEditModalTour={setEditModalTour}
+        />
       </div>
     </>
   );
