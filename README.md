@@ -55,7 +55,7 @@ hosted by [Mintbean](https://www.mintbean.io/)
 ![tmrw_tasks.gif](https://s8.gifyu.com/images/tmrw_tasks.gif)
 
 ### Download and upload 
-  - The user can download their plans to disk storage if they want to view their plans offline
+  - Users can download and transfer their tasks to another device/browser
   - If the user has a list they want to upload, they can simply use the upload button
 
 [![tmrw_updown.gif](https://s8.gifyu.com/images/tmrw_updown.gif)](https://gifyu.com/image/gkz3)
