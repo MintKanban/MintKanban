@@ -9,12 +9,11 @@ interface EditCardProps {
   editCard: (card: CardData) => void
   deleteCard: () => void
   handleClose: () => void
-  show: boolean,
-  tour: boolean
+  show: boolean
 }
 
 export default function EditCard(
-  { card, editCard, deleteCard, handleClose, show, tour }: EditCardProps) {
+  { card, editCard, deleteCard, handleClose, show }: EditCardProps) {
 
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description)
@@ -39,33 +38,27 @@ export default function EditCard(
       <Modal.Body>
         <Form>
           <Form.Group controlId="title">
-            <div id={ tour ? 'fifth-step' : '' }>
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text"
-                            placeholder={'Insert a task'}
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                            required
-              />
-            </div>
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text"
+                          placeholder={'Insert a task'}
+                          value={title}
+                          onChange={e => setTitle(e.target.value)}
+                          required
+            />
           </Form.Group>
           <Form.Group controlId="description">
-            <div id={ tour ? 'sixth-step' : '' }>
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3}
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}>
-              </Form.Control>
-            </div>
+            <Form.Label>Description</Form.Label>
+            <Form.Control as="textarea" rows={3}
+                          value={description}
+                          onChange={e => setDescription(e.target.value)}>
+            </Form.Control>
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <div id={ tour ? 'seventh-step' : '' }>
-          <Button variant="primary" onClick={save}>Save Changes</Button>
-          <Button variant="danger" onClick={remove}>Delete</Button>
-          <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-        </div>
+        <Button variant="primary" onClick={save}>Save Changes</Button>
+        <Button variant="danger" onClick={remove}>Delete</Button>
+        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
       </Modal.Footer>
     </Modal>
   );

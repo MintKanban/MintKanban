@@ -5,6 +5,7 @@ import EditCard from '../EditCard/EditCard';
 import BCard from 'react-bootstrap/Card';
 
 interface CardProps {
+  id: string,
   card: CardData,
   idx: number,
   list: CardData[],
@@ -15,15 +16,13 @@ interface CardProps {
     deleteCard: (index: number, list: CardData[]) => () => void;
     deleteList: () => void;
     renameList: (newListName: string) => void;
-  },
-  tour: boolean,
-  editModalTour: boolean
+  }
 }
 
 export default function Card(
-  { card, idx, list, listName, setList, tour, editModalTour }: CardProps) {
+  { id, card, idx, list, listName, setList }: CardProps) {
 
-  const [show, setShow] = useState(editModalTour ? true : false);
+  const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -36,27 +35,27 @@ export default function Card(
         deleteCard={ setList.deleteCard(idx, list) }
         handleClose={ handleClose }
         show={ show }
-        tour={ tour }
       />
       <Draggable
         draggableId={`${listName}-${idx}`}
         index={idx}
       >
         {(provided, snapshot) => (
-          <BCard
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            onClick={handleShow}
-            className="mb-3"
-            bg={snapshot.isDragging ? "light" : ""}
-          >
-            <BCard.Body>
-              <BCard.Text>
-                {card.title}
-              </BCard.Text>
-            </BCard.Body>
-          </BCard>
+            <BCard
+              id={id}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              onClick={handleShow}
+              className="mb-3"
+              bg={snapshot.isDragging ? "light" : ""}
+            >
+              <BCard.Body>
+                <BCard.Text>
+                  {card.title}
+                </BCard.Text>
+              </BCard.Body>
+            </BCard>
         )}
       </Draggable>
     </>

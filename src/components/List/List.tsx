@@ -19,14 +19,11 @@ interface ListProps {
     deleteList: () => void;
     renameList: (newListName: string) => void;
   },
-  listOrder: string[],
-  editModalTour: boolean
+  listOrder: string[]
 }
 
 export default function List(
-  { index, list, listName, setList, listOrder, editModalTour }:
-  ListProps
-) {
+  { index, list, listName, setList, listOrder }: ListProps) {
 
   const [duplicate, setDuplicate] = useState(false);
   
@@ -79,21 +76,21 @@ export default function List(
                     {
                       list.map((card, idx) => (
                         <Card
+                          id={index === 0 && idx === 0 ? 'fifth-step' :''}
                           key={idx}
                           card={card}
                           idx={idx}
                           list={list}
                           listName={listName}
                           setList={setList}
-                          tour={
-                            listOrder.indexOf(listName) === 0 ? true : false
-                          }
-                          editModalTour={editModalTour}
                         />
                       ))
                     }
                     {provided.placeholder}
-                    <AddCard addCard={setList.addCard}/>
+                    <AddCard
+                      id={index === 0 ? 'sixth-step' : ''}
+                      addCard={setList.addCard}
+                    />
                   </BCard.Body>
                 )}
               </Droppable>

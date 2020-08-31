@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-interface TourComponentProps {
-  editModalTour: boolean,
-  setEditModalTour: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export default function TourComponent(
-  { editModalTour, setEditModalTour }: TourComponentProps) {
+export default function TourComponent() {
 
   const [show, setShow] = useState(false);
   const accentColor = "#5cb7b7";
@@ -23,51 +17,36 @@ export default function TourComponent(
   const steps = [
     {
       selector: '#first-step',
-      content: 'This is a list.'
+      content: "To get started, here's a list."
     },
     {
       selector: '#second-step',
-      content: 'This is the title. Double click on it to edit. ' +
-        '                      ' +
-        "Note: You can't have multiple lists with the same name " +
-        "(CASE-INSENSITIVE)."
+      content: "At the top is the title. Double click on it to edit."
     },
     {
       selector: '#third-step',
-      content: 'Click this button to delete the list.'
+      content: 'If you want to delete a lest, you can do so here.'
     },
     {
       selector: '#fourth-step',
-      content: 'These are the tasks in your list.' +
-        'Click on one to edit its details.'
+      content: 'Below the title, are a list of all the tasks.'
     },
     {
       selector: '#fifth-step',
-      content: () => {
-        if (!editModalTour) setEditModalTour(true);
-        
-        return "You can the edit a task's title.";
-      }
+      content: 'Click on one to edit its details.'
     },
     {
       selector: '#sixth-step',
-      content: () => {
-        if (!editModalTour) setEditModalTour(true);
-        
-        return "You can the edit a task's description.";
-      }
+      content: "At the bottom of the list, you'll find the option to add more tasks"
     },
     {
       selector: '#seventh-step',
-      content: () => {
-        if (!editModalTour) setEditModalTour(true);
-        
-        return (
-          "Click one of the following buttons to SAVE, DELETE, or CANCEL " +
-          "your edits."
-        );
-      }
+      content: "And on the right of the page, you'll find the option to add new lists."
     },
+    {
+      selector: '#eigth-step',
+      content: 'Lastly, you can quickly reorder lists, and tasks by dragging and dropping them with your cursor. You can reorder task cards within the same list, move them over to another list, and even reorder the lists themselves!'
+    }
   ];
 
   return (

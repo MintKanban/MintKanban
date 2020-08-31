@@ -13,7 +13,6 @@ function Board() {
     done: [new CardData(":P")]
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
-  const [editModalTour, setEditModalTour] = useState(false);
 
   function loadList(serializedList: string) {
     const { lists, listOrder } = JSON.parse(serializedList);
@@ -153,7 +152,8 @@ function Board() {
             type="LIST"
           >
             {(provided) => (
-              <main ref={provided.innerRef}
+              <main id="eigth-step"
+                ref={provided.innerRef}
                 className="d-flex align-items-start flex-row overflow-auto p-3"
               >
                 {
@@ -165,7 +165,6 @@ function Board() {
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
-                        editModalTour={editModalTour}
                       />
                     );
                   })
@@ -182,10 +181,7 @@ function Board() {
           </Droppable>
         </DragDropContext>
 
-        <TourComponent
-          editModalTour={editModalTour}
-          setEditModalTour={setEditModalTour}
-        />
+        <TourComponent/>
       </div>
     </>
   );
