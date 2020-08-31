@@ -12,6 +12,11 @@ export default function TourComponent(
   { firstVisit, editModalTour, setEditModalTour }: TourComponentProps) {
   const [show, setShow] = useState(firstVisit);
   const accentColor = "#5cb7b7";
+
+  const handleClose = () => {
+    setShow(false);
+    setEditModalTour(false);
+  };
   
   const disableBody = (target: HTMLElement) => (
     disableBodyScroll(target)
@@ -107,7 +112,7 @@ export default function TourComponent(
         className="btn btn-secondary mr-3"
         onClick={() => setShow(true)}>Take a tour!</button>    
       <Tour
-        onRequestClose={ () => setShow(false) }
+        onRequestClose={handleClose}
         steps={steps}
         isOpen={show}
         maskClassName="mask"

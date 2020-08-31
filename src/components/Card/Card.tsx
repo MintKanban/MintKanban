@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import CardData from '../Types/CardData';
 import EditCard from '../EditCard/EditCard';
@@ -28,9 +28,20 @@ export default function Card(
     id, card, idx, list, listName, setList, moveCardToList, listOrder,
     isTourExample, editModalTour
   }: CardProps) {
+  
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    if (isTourExample && editModalTour) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [isTourExample, editModalTour]);
 
-  const [show, setShow] = useState(isTourExample ? editModalTour : false);
-
+  if (isTourExample){
+    console.log('show:', show);
+    console.log('editModalTour:', editModalTour);
+  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
