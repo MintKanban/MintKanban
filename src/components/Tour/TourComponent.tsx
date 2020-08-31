@@ -84,7 +84,13 @@ export default function TourComponent(
     },
     {
       selector: '#seventh-step',
-      content: 'You can edit the title.',
+      content: () => (
+        <div>
+          <div>You can edit the title, and description.</div>
+          <div>Move it to another list.</div>
+          <div>Or delete the entire card.</div>
+        </div>
+      ),
       action: () => {
         if (!editModalTour) setEditModalTour(true);
       }
