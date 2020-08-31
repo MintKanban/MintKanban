@@ -51,7 +51,10 @@ export default function TourComponent() {
 
   return (
     <>
-      <button onClick={ () => setShow(true) }>Take a tour!</button>
+      <button 
+        type="button" 
+        className="btn btn-secondary mr-3"
+        onClick={() => setShow(true)}>Take a tour!</button>    
       <Tour
         onRequestClose={ () => setShow(false) }
         steps={steps}
