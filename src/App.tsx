@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/index.scss';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from './components/landingpage';
 import Board from './components/Board/board'
 
