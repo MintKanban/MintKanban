@@ -35,7 +35,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 25px;
 }
 
 .social-links img {
@@ -47,4 +46,9 @@
   font-family: 'Rubik', sans-serif;
   font-weight: bolder;
   font-size: 30px;
+}
+
+.landing-page-divider {
+  background-color: #d3d3d39e;
+  padding: 10px;
 }

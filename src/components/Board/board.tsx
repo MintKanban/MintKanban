@@ -9,7 +9,6 @@ import { BoardNav } from "../NavBar/NavBar";
 import Load from "../File/Load";
 import Save from "../File/Save";
 
-
 function Board() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
     todo: [new CardData("first"), new CardData("second")],
@@ -81,7 +80,6 @@ function Board() {
     }
   }
 
-
   const move = (
     source: CardData[], destination: CardData[],
     droppableSource: DraggableLocation,
@@ -145,7 +143,6 @@ function Board() {
     }
   }
 
-
   return (
     <>
       <BoardNav>
@@ -174,14 +171,14 @@ function Board() {
             {(provided) => (
               <main ref={provided.innerRef} className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
                 {
-                  listOrder.map(listName => {
+                  listOrder.map((listName, idx) => {
                     return (
                       <List key={listName}
+                        index={idx}
                         list={lists[listName]}
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
-                        index={listOrder.indexOf(listName)}
                       />
                     );
                   })
@@ -197,6 +194,7 @@ function Board() {
             )}
           </Droppable>
         </DragDropContext>
+
       </div>
     </>
   );

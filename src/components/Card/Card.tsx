@@ -15,10 +15,12 @@ interface CardProps {
     deleteCard: (index: number, list: CardData[]) => () => void;
     deleteList: () => void;
     renameList: (newListName: string) => void;
-  }
+  },
+  tour: boolean
 }
 
-export default function Card({card, idx, list, listName, setList}: CardProps) {
+export default function Card(
+  { card, idx, list, listName, setList, tour, }: CardProps) {
 
   const [show, setShow] = useState(false);
 
@@ -28,11 +30,12 @@ export default function Card({card, idx, list, listName, setList}: CardProps) {
   return (
     <>
       <EditCard
-        card={card}
+        card={ card }
         editCard={ setList.editCard(idx, list) }
         deleteCard={ setList.deleteCard(idx, list) }
         handleClose={ handleClose }
         show={ show }
+        tour={ tour }
       />
       <Draggable
         draggableId={`${listName}-${idx}`}
