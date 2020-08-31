@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-export default function TourComponent() {
+interface TourComponentProps {
+  firstVisit: boolean
+}
 
-  const [show, setShow] = useState(false);
+export default function TourComponent({ firstVisit }: TourComponentProps) {
+  const [show, setShow] = useState(firstVisit);
   const accentColor = "#5cb7b7";
   
   const disableBody = (target: HTMLElement) => (
