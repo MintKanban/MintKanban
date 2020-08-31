@@ -70,7 +70,7 @@ hosted by [Mintbean](https://www.mintbean.io/)
 
 ### Multi-level Currying
 
-```
+```typescript
 const moveCardToList = (from: string) => (index: number) => (to: string) => {
     if (from === to) return;
     const source = [...lists[from]];
@@ -89,7 +89,7 @@ we applied multi-level currying making the code more readable for other programm
 
 ### Threading and keeping code dry
 
-```
+```typescript
 export default function EditCard(
   { card, editCard, deleteCard, handleClose, show, moveCardToList, listOrder, listName }: EditCardProps) {
 
