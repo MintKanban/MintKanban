@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import CardData from '../Types/CardData';
 import EditCard from '../EditCard/EditCard';
@@ -18,20 +18,33 @@ interface CardProps {
     deleteCard: (index: number, list: CardData[]) => () => void;
     deleteList: () => void;
     renameList: (newListName: string) => void;
-  }
+  },
+  isTourExample: boolean,
+  editModalTour: boolean,
 }
 
 export default function Card(
-  { id, card, idx, list, listName, setList, moveCardToList, listOrder }: CardProps) {
-
+  {
+    id, card, idx, list, listName, setList, moveCardToList, listOrder,
+    isTourExample, editModalTour
+  }: CardProps) {
+  
   const [show, setShow] = useState(false);
-
+  useEffect(() => {
+    if (isTourExample && editModalTour) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }, [isTourExample, editModalTour]);
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
       <EditCard
+        id={isTourExample ? 'seventh-step' : ''}
         card={ card }
         editCard={ setList.editCard(idx, list) }
         deleteCard={ setList.deleteCard(idx, list) }

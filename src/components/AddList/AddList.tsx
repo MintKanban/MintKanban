@@ -59,7 +59,7 @@ export default function AddList(
         </>
     } else {
       return (
-        <BCard.Body id="eigth-step"
+        <BCard.Body id="ninth-step"
           className="d-flex align-items-center justify-content-center"
           onClick={ () => setAddButton(true) }
         >
