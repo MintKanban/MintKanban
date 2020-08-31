@@ -9,8 +9,6 @@ import { BoardNav } from "../NavBar/NavBar";
 import Load from "../File/Load";
 import Save from "../File/Save";
 
-import TourComponent from '../Tour/TourComponent';
-
 function Board() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
     todo: [new CardData("first"), new CardData("second")],
@@ -199,10 +197,6 @@ function Board() {
           </Droppable>
         </DragDropContext>
 
-        <TourComponent
-          editModalTour={editModalTour}
-          setEditModalTour={setEditModalTour}
-        />
       </div>
     </>
   );
