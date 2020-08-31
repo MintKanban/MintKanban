@@ -12,9 +12,9 @@ import Save from "../File/Save";
 
 function Board() {
   const [lists, setLists] = useState<Record<string, CardData[]>>({
-    todo: [new CardData("first"), new CardData("second")],
-    inProgress: [new CardData("finish hackathon")],
-    done: [new CardData(":P")]
+    todo: [new CardData("This is your first task")],
+    inProgress: [],
+    done: []
   });
   const [listOrder, setListOrder] = useState(Object.keys(lists));
   const [editModalTour, setEditModalTour] = useState(false);
