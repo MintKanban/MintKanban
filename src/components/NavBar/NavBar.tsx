@@ -21,7 +21,7 @@ export const LandingPageNav: FC = () => {
 
 export const BoardNav: FC = props => {
   return <Navbar bg="primary" variant="dark" expand="lg">
-    <Navbar.Brand href='/'>tmrw</Navbar.Brand>
+    <Navbar.Brand as={Link} to='/'>tmrw</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
       { props.children }
