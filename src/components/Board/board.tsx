@@ -185,7 +185,7 @@ function Board() {
             type="LIST"
           >
             {(provided) => (
-              <main id="eigth-step"
+              <main id="first-step"
                 ref={provided.innerRef}
                 className="d-flex align-items-start flex-row overflow-auto p-3 mt-3">
                 {
