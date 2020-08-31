@@ -80,6 +80,18 @@ function Board() {
       }
     }
   }
+  
+  const moveCardToList = (from: string) => (index: number) => (to: string) => {
+    if (from === to) return;
+    const source = [...lists[from]];
+    const card = source.splice(index, 1);
+    const target = [...lists[to], ...card];
+    setLists({
+      ...lists,
+      [from]: source,
+      [to]: target
+    })
+  }
 
   const move = (
     source: CardData[], destination: CardData[],
@@ -183,6 +195,7 @@ function Board() {
                         listName={listName}
                         setList={setList(listName)}
                         listOrder={listOrder}
+                        moveCardToList={moveCardToList(listName)}
                       />
                     );
                   })
